@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary: #004080;
+    --color-secondary: #FF8C00;
+    --color-background: #F5F5F5;
+
+    --font-sans: 'Figtree', sans-serif;
+
+    --radius-card: 20px;
+    --radius-pill: 9999px;
+
+    --shadow-soft: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+}
+
+@layer components {
+    .btn-primary {
+        @apply bg-secondary text-white font-bold px-6 py-2.5 rounded-pill hover:bg-orange-600 transition-all shadow-lg;
+    }
+}

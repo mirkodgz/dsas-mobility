@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación Técnica DSAS Mobility</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #0ea5e9;
+            --text-light: #64748b;
+            --bg-page: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+            margin: 0;
+            padding: 40px;
+            color: var(--primary);
+            line-height: 1.5;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .page {
+            background: white;
+            width: 210mm;
+            min-height: 297mm;
+            /* Changed to min-height */
+            margin: 0 auto 40px auto;
+            padding: 20mm;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: relative;
+            box-sizing: border-box;
+            overflow: visible;
+            /* changed from hidden to visible */
+            page-break-after: always;
+        }
+
+        /* HEADER */
+        header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+            max-width: 200px;
+            object-fit: contain;
+        }
+
+        .doc-meta {
+            text-align: right;
+            font-size: 11px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* TYPOGRAPHY */
+        h1 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-size: 18px;
+            font-weight: 700;
+            border-left: 4px solid var(--accent);
+            padding-left: 12px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--secondary);
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        p {
+            margin-bottom: 12px;
+            color: #334155;
+            font-size: 13px;
+            text-align: justify;
+        }
+
+        /* TABLES & SHEETS */
+        .tech-sheet {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 25px;
+        }
+
+        .tech-item {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 6px 0;
+            font-size: 13px;
+        }
+
+        .tech-item:last-child {
+            border-bottom: none;
+        }
+
+        .label {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .value {
+            color: var(--text-light);
+            font-family: monospace;
+            font-weight: 500;
+        }
+
+        /* COMPARISON TABLE */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+            margin-bottom: 20px;
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #334155;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        /* LISTS */
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            padding-left: 15px;
+            position: relative;
+            margin-bottom: 6px;
+            font-size: 13px;
+            color: #334155;
+        }
+
+        li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 14px;
+        }
+
+        /* FOOTER */
+        .footer {
+            position: absolute;
+            bottom: 15mm;
+            left: 20mm;
+            right: 20mm;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 10px;
+            font-size: 9px;
+            color: var(--text-light);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-print {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s;
+            border: none;
+            z-index: 1000;
+        }
+
+        .btn-print:hover {
+            transform: translateY(-2px);
+            background: var(--accent);
+        }
+
+        /* PRINT OPTIMIZATION - CRITICAL AREA */
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                background: white;
+                margin: 0;
+                padding: 0;
+            }
+
+            .page {
+                margin: 0;
+                border: none;
+                box-shadow: none;
+                width: 210mm;
+                min-height: 297mm;
+                /* Full A4 height */
+                height: auto;
+                padding: 15mm;
+                /* Reset padding for print */
+                box-sizing: border-box;
+                page-break-after: always;
+                break-after: page;
+                overflow: visible;
+            }
+
+            .page:last-child {
+                page-break-after: auto;
+                break-after: auto;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+
+<body><button class="btn-print no-print" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button>
+
+    <div class="page">
+        <header>
+
+            <div class="doc-meta">PRESENTACIÓN TÉCNICA v2.0<br>06 ENERO 2026 </div>
+        </header>
+        <h1>Plataforma Digital Integral</h1>
+        <p style="font-size: 16px; color: var(--text-light); margin-bottom: 30px; font-weight: 300;">
+            Presentación Técnica de Modernización Tecnológica y Arquitectura High-Performance.</p>
+        <div class="tech-sheet">
+            <div class="tech-item"><span class="label">Proyecto</span><span class="value">Plataforma DSAS
+                    Mobility</span></div>
+            <div class="tech-item"><span class="label">Dominio Oficial</span><span class="value">dsas-mobility.it</span>
+            </div>
+            <div class="tech-item"><span class="label">Tipo de Plataforma</span><span class="value">Marketplace
+                    Híbrido (High-Performance)</span></div>
+            <div class="tech-item"><span class="label">Infraestructura</span><span class="value">Serverless / Edge
+                    Network</span></div>
+        </div>
+        <h2>Resumen Ejecutivo</h2>
+        <p>El objetivo de este proyecto es posicionar a <strong>DSAS Mobility</strong>como líder en el mercado de
+            alquiler de vehículos mediante una plataforma digital "State-of-the-Art" .</p>
+        <p>A diferencia de las soluciones tradicionales,
+            nuestra arquitectura técnica se basa en un alto rendimiento,
+            diseñada para ofrecer:</p>
+        <ul>
+            <li><strong>Experiencia Instantánea:</strong>Carga de página inferior a 0.8 segundos.</li>
+            <li><strong>SEO Dominante:</strong>Visibilidad orgánica optimizada técnicamente para buscadores.</li>
+            <li><strong>Escalabilidad:</strong>Tecnología preparada para crecer durante la próxima década.</li>
+        </ul><br>
+        <p>Hemos tomado como referencia los estándares de usabilidad de los líderes del mercado (<strong>Referencia
+                visual y estructural: <a href="https://subnoleggiami.it/"
+                    style="color: var(--accent); text-decoration: underline;"
+                    target="_blank">subnoleggiami.it</a></strong>),
+            elevando la calidad técnica para superar las expectativas del usuario moderno.</p>
+        <div class="footer"><span>Presentación Técnica - DSAS Mobility</span><span>Página 1 de 3</span></div>
+    </div>
+
+    <div class="page">
+        <header>
+
+            <div class="doc-meta">ESPECIFICACIONES TÉCNICAS </div>
+        </header>
+        <h2>Arquitectura del Sistema</h2>
+        <p>Selección de stack basado en estándares modernos de desarrollo,
+            priorizando estabilidad y seguridad.</p>
+        <h3>A. Frontend: Rendimiento y UX</h3>
+        <p><strong>Tecnología: Astro+React+TypeScript</strong></p>
+        <ul>
+            <li><strong>Arquitectura de Rendimiento:</strong>Implementación de "Islas" que sirve HTML estático
+                por defecto. Garantiza carga instantánea y eficiencia móvil.</li>
+            <li><strong>SEO Técnico:</strong>Indexación optimizada a nivel de servidor (SSR),
+                crítica para competir en Google.</li>
+            <li><strong>Interactividad:</strong>Carga diferida de componentes "pesados"(calculadoras, filtros)
+                para no bloquear la navegación.</li>
+        </ul>
+        <h3>B. Diseño Visual & UI System</h3>
+        <p><strong>Tecnología: Tailwind CSS v4+Diseño Atómico</strong></p>
+        <ul>
+            <li><strong>Estética Premium:</strong>Sistema de diseño a medida,
+                limpio y moderno,
+                con tipografías de alto contraste.</li>
+            <li><strong>Mobile-First:</strong>Interfaz diseñada nativamente para pantallas táctiles.</li>
+        </ul>
+        <h3>C. Backend & Datos</h3>
+        <p><strong>Tecnología: Supabase (PostgreSQL)</strong></p>
+        <ul>
+            <li><strong>Seguridad Bancaria:</strong>Protección de datos mediante <em>Row Level
+                    Security</em>(RLS). </li>
+            <li><strong>Escalabilidad:</strong>Base de datos que crece automáticamente sin mantenimiento de
+                servidores físicos.</li>
+        </ul>
+        <h3>D. Inteligencia Artificial & Automatización</h3>
+        <p><strong>Tecnología: n8n+Integración AI</strong></p>
+        <ul>
+            <li><strong>Adaptación de Ecosistema Existente:</strong>Aprovecharemos su infraestructura actual de
+                Asistentes de IA (ya operativa). Conectamos "el cerebro" existente al nuevo "chasis digital" .
+            </li>
+            <li><strong>Sincronización de Leads:</strong>Adaptación de flujos n8n para procesar solicitudes
+                desde la nueva web,
+                enriqueciendo los datos con la nueva estructura de Supabase.</li>
+        </ul>
+        <div class="footer"><span>Presentación Técnica - DSAS Mobility</span><span>Página 2 de 3</span></div>
+    </div>
+
+    <div class="page">
+        <header>
+
+            <div class="doc-meta">HOJA DE RUTA DE EJECUCIÓN </div>
+        </header>
+        <h2>Ventajas Competitivas</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Característica</th>
+                    <th>Solución Técnica (DSAS)</th>
+                    <th>Webs Tradicionales</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Tiempo de Carga</td>
+                    <td><strong>&lt;
+                            0.8 seg</strong>(Instantáneo)</td>
+                    <td>3-5 segundos</td>
+                </tr>
+                <tr>
+                    <td>Seguridad</td>
+                    <td><strong>Nivel Enterprise</strong></td>
+                    <td>Vulnerable (Plugins)</td>
+                </tr>
+                <tr>
+                    <td>SEO</td>
+                    <td><strong>Nativo / Técnico</strong></td>
+                    <td>Dependiente de Plugins</td>
+                </tr>
+                <tr>
+                    <td>Innovación</td>
+                    <td><strong>AI Ready (Integrado)</strong></td>
+                    <td>Difícil integración</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Hoja de Ruta de Ingeniería (10 Días - Simultanéidad de Equipo)</h2>
+        <h3>FASE 1: Arquitectura y Cimientos (Días 1-2)</h3>
+        <ul>
+            <li>Ingeniería de Datos y Modelado en PostgreSQL (Supabase).</li>
+            <li>Implementación de protocolos de seguridad RLS.</li>
+            <li>Configuración del Sistema de Diseño (Design Tokens).</li>
+        </ul>
+        <h3>FASE 2: Desarrollo del Núcleo (Días 3-6)</h3>
+        <ul>
+            <li>Desarrollo de Filtros Avanzados y Calculadoras (React Islands).</li>
+            <li>Construcción del Motor de Showroom Virtual.</li>
+            <li>Optimización completa para móviles.</li>
+        </ul>
+        <h3>FASE 3: Integración & Automatización (Días 7-9)</h3>
+        <ul>
+            <li>Conexión de n8n existente con la nueva base de datos.</li>
+            <li>Mapeo de Webhooks para alimentar flujos de venta actuales.</li>
+            <li>Optimización de prompts del Asistente para el nuevo catálogo.</li>
+        </ul>
+        <h3>FASE 4: Auditoría & Lanzamiento (Día 10)</h3>
+        <ul>
+            <li>Auditoría Técnica SEO (Schema.org, Sitemaps).</li>
+            <li>Pruebas de Estrés y Seguridad.</li>
+            <li>Despliegue Global en CDN.</li>
+        </ul>
+
+
+        <div class="footer"><span>Presentación Técnica - DSAS Mobility</span><span>Página 3 de 3</span>
+        </div>
+    </div>
+</body>
+
+</html>
