@@ -9,7 +9,8 @@ interface Vehicle {
     image: string;
     fuel: string;
     transmission: string;
-    available: boolean;
+    available?: boolean;
+    slug?: string;
 }
 
 export default function OffersCarousel({ vehicles }: { vehicles: Vehicle[] }) {

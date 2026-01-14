@@ -5,7 +5,8 @@
     --color-secondary: #f2611c;
     --color-background: #F5F5F5;
 
-    --font-sans: 'Figtree', sans-serif;
+    --font-sans: 'Inter', sans-serif;
+    --font-heading: 'Plus Jakarta Sans', sans-serif;
 
     --radius-card: 20px;
     --radius-pill: 9999px;
@@ -15,6 +16,22 @@
     --animate-fade-in-up: fadeInUp 0.5s ease-out forwards;
     --animate-bounce-slow: bounceSlow 3s infinite;
     --animate-loop-scroll: loop-scroll 40s linear infinite;
+}
+
+@layer base {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: var(--font-heading);
+    }
+
+    body {
+        font-family: var(--font-sans);
+    }
 }
 
 @layer utilities {

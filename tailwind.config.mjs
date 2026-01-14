@@ -9,7 +9,8 @@ export default {
                 background: '#F5F5F5', // Light Gray
             },
             fontFamily: {
-                sans: ['Figtree', 'sans-serif'],
+                sans: ['Inter', 'sans-serif'],
+                heading: ['"Plus Jakarta Sans"', 'sans-serif'],
             },
             borderRadius: {
                 'card': '20px',

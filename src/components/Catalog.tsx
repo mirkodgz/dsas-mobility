@@ -12,6 +12,7 @@ interface Vehicle {
     transmission: string;
     available: boolean;
     category?: string;
+    slug?: string;
 }
 
 interface CatalogProps {

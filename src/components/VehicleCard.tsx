@@ -11,17 +11,20 @@ interface VehicleProps {
     fuel: string;
     transmission: string;
     available: boolean;
+    slug?: string;
 }
 
 export default function VehicleCard({ vehicle }: { vehicle: VehicleProps }) {
-    return (
+    const CardContent = (
         <div className="group relative bg-white rounded-card shadow-soft hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col h-full transform hover:-translate-y-1">
             {/* BADGE */}
             <div className="absolute top-4 left-4 z-10">
                 <Badge variant={vehicle.available ? 'success' : 'info'}>
                     {vehicle.available ? 'Pronta Consegna' : 'Ordinabile'}
                 </Badge>
-            </div>            {/* IMAGE AREA */}
+            </div>
+
+            {/* IMAGE AREA */}
             <div className="relative aspect-[16/10] overflow-hidden bg-gray-200 border-b border-gray-100">
                 <img
                     src={vehicle.image}
@@ -66,6 +69,14 @@ export default function VehicleCard({ vehicle }: { vehicle: VehicleProps }) {
                 </div>
             </div>
         </div>
+    );
+
+    return vehicle.slug ? (
+        <a href={`/veicoli/${vehicle.slug}`} className="block h-full">
+            {CardContent}
+        </a>
+    ) : (
+        CardContent
     );
 }
 

@@ -37,17 +37,9 @@ export default function Header() {
                 </nav>
 
                 {/* CTAs */}
-                <div className="hidden md:flex items-center gap-4">
-                    <a
-                        href="https://wa.me/390000000000"
-                        className="flex items-center gap-2 text-primary font-bold hover:text-secondary transition-colors"
-                    >
-                        {/* Whatsapp Icon */}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" /><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0 .5-.5l.14-.38a.5.5 0 0 0-.38-.62a9 9 0 0 0-1.74 0a.5.5 0 0 0-.3 0 .5.5 0 0 0-.25.5v1a.5.5 0 0 0 .5.5z" /></svg>
-                        +39 351 000 0000
-                    </a>
-                    <Button variant="primary" className="transform hover:-translate-y-0.5">
-                        Richiedi Preventivo
+                <div className="hidden md:flex items-center space-x-6">
+                    <Button variant="primary" size="sm" className="!rounded-full px-6 shadow-md hover:shadow-lg transition-all" onClick={() => window.location.href = '/contatti'}>
+                        RICHIEDI PREVENTIVO
                     </Button>
                 </div>
 
