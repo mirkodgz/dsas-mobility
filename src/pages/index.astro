@@ -58,7 +58,12 @@ const FEATURED_VEHICLES = featuredData?.map(v => ({
                              placeholder="Che auto cerchi?" 
                              class="flex-grow px-6 py-3 rounded-full text-gray-800 placeholder-gray-400 focus:outline-none text-center sm:text-left"
                          />
-                         <Button variant="primary" className="rounded-full whitespace-nowrap px-8 py-3 w-full sm:w-auto shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all">
+                         <Button 
+                            as="a" 
+                            href="/noleggio-lungo-termine" 
+                            variant="primary" 
+                            className="rounded-full whitespace-nowrap px-6 py-2 text-sm md:text-base md:px-8 md:py-3 w-full sm:w-auto shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all"
+                         >
                              Cerca Auto
                          </Button>
  					</div>

@@ -23,32 +23,22 @@ export default function BrandsMarquee() {
 
                 <div className="flex w-max animate-loop-scroll hover:pause-animation">
                     {/* ORIGINAL SET */}
-                    {BRANDS.map((brand, index) => (
-                        <div key={`brand-${index}`} className="flex items-center justify-center mx-8 w-32 h-20 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                            <img
-                                src={brand.logo}
-                                alt={brand.name}
-                                className="max-w-full max-h-full object-contain"
-                                loading="lazy"
-                                onError={(e) => {
-                                    (e.target as HTMLImageElement).style.display = 'none';
-                                }}
-                            />
-                        </div>
-                    ))}
-                    {/* DUPLICATE SET FOR INFINITE LOOP */}
-                    {BRANDS.map((brand, index) => (
-                        <div key={`brand-dup-${index}`} className="flex items-center justify-center mx-8 w-32 h-20 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                            <img
-                                src={brand.logo}
-                                alt={brand.name}
-                                className="max-w-full max-h-full object-contain"
-                                loading="lazy"
-                                onError={(e) => {
-                                    (e.target as HTMLImageElement).style.display = 'none';
-                                }}
-                            />
-                        </div>
+                    {[...Array(4)].map((_, setIndex) => (
+                        BRANDS.map((brand, index) => (
+                            <div key={`brand-${setIndex}-${index}`} className="flex items-center justify-center mx-4 md:mx-8 w-24 md:w-32 h-16 md:h-20 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-300 flex-shrink-0">
+                                <img
+                                    src={brand.logo}
+                                    alt={brand.name}
+                                    className="max-w-full max-h-full object-contain"
+                                    loading="eager"
+                                    width="128"
+                                    height="80"
+                                    onError={(e) => {
+                                        (e.target as HTMLImageElement).style.display = 'none';
+                                    }}
+                                />
+                            </div>
+                        ))
                     ))}
                 </div>
             </div>
