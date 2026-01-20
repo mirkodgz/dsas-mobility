@@ -48,6 +48,8 @@ const FEATURED_VEHICLES = featuredData?.map(v => ({
  						Scopri la libertà di guidare un'auto nuova <span class="text-secondary">senza pensieri</span>. <br class="hidden md:block"/>
  						Il canone <span class="text-secondary">All-Inclusive</span> che trasforma il tuo viaggio in pura emozione.
  					</p>
+
+
  					
                     {/* SEARCH / ACTION BAR - Centered */}
  					<div class="mt-8 md:mt-12 bg-white p-3 sm:p-2 rounded-[2rem] sm:rounded-full shadow-2xl flex flex-col sm:flex-row gap-3 sm:gap-2 max-w-lg mx-auto">
@@ -94,16 +96,72 @@ const FEATURED_VEHICLES = featuredData?.map(v => ({
                 </div>
 
                 <div class="space-y-24">
-                    {/* SERVICE 1: Short Term (Image Left, Text Right) */}
+                    {/* SERVICE 1: Long Term (MOVED TO FIRST) */}
                     <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 group">
                         <div class="w-full lg:w-1/2 relative z-10">
                             <div class="relative rounded-3xl overflow-hidden transform transition-transform duration-700 group-hover:scale-[1.02]">
+                                <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors z-10"></div>
+                                <video 
+                                    src="https://res.cloudinary.com/dskliu1ig/video/upload/v1768930137/2232323_gdpali.mov" 
+                                    class="w-full h-full object-cover aspect-[4/3]"
+                                    autoplay
+                                    loop
+                                    muted
+                                    playsinline
+                                ></video>
+                                 {/* Floating Badge */}
+                                <div class="absolute bottom-8 right-8 z-20 bg-primary/90 backdrop-blur text-white px-6 py-3 rounded-2xl font-bold border border-white/10">
+                                    Tutto incluso
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-full lg:w-1/2">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-12 h-12 rounded-2xl bg-primary text-white flex items-center justify-center shadow-lg shadow-primary/30">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                                </div>
+                                <h3 class="heading-2 text-primary">Lungo Termine</h3>
+                            </div>
+                            
+                            <p class="text-lead text-gray-500 mb-8">
+                                La soluzione definitiva per privati e aziende. Guida l'auto dei tuoi sogni con un unico canone mensile che copre ogni spesa.
+                            </p>
+
+                            <ul class="space-y-4 mb-10">
+                                <li class="flex items-start gap-4">
+                                     <span class="mt-1 w-2 h-2 rounded-full bg-primary flex-shrink-0"></span>
+                                     <span class="text-gray-600 font-medium text-lg">Zero anticipo disponibile</span>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                     <span class="mt-1 w-2 h-2 rounded-full bg-primary flex-shrink-0"></span>
+                                     <span class="text-gray-600 font-medium text-lg">Manutenzione, bollo e assicurazione</span>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                     <span class="mt-1 w-2 h-2 rounded-full bg-primary flex-shrink-0"></span>
+                                     <span class="text-gray-600 font-medium text-lg">Permuta del tuo usato valutata al massimo</span>
+                                </li>
+                            </ul>
+
+                            <Button href="/lungo-termine" as="a" variant="primary" size="lg" className="px-10">
+                                Scopri i Vantaggi
+                            </Button>
+                        </div>
+                    </div>
+
+                    {/* SERVICE 2: Short Term (MOVED TO SECOND) */}
+                    <div class="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-20 group">
+                        <div class="w-full lg:w-1/2 relative z-10">
+                            <div class="relative rounded-3xl overflow-hidden transform transition-transform duration-700 group-hover:scale-[1.02]">
                                 <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors z-10"></div>
-                                <img 
-                                    src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1000" 
-                                    alt="Noleggio Breve Termine" 
-                                    class="w-full h-auto object-cover aspect-[4/3]"
-                                />
+                                <video 
+                                    src="https://res.cloudinary.com/dskliu1ig/video/upload/v1768928741/video-home2_mihrn6.mp4" 
+                                    class="w-full h-full object-cover aspect-[4/3]"
+                                    autoplay
+                                    loop
+                                    muted
+                                    playsinline
+                                ></video>
                                 {/* Floating Badge */}
                                 <div class="absolute bottom-8 left-8 z-20 bg-white/90 backdrop-blur text-primary px-6 py-3 rounded-2xl font-bold border border-white">
                                     Da 39€ /giorno
@@ -140,56 +198,6 @@ const FEATURED_VEHICLES = featuredData?.map(v => ({
 
                             <Button href="/breve-termine" as="a" variant="primary" size="lg" className="px-10">
                                 Vedi Le Auto
-                            </Button>
-                        </div>
-                    </div>
-
-                    {/* SERVICE 2: Long Term (Text Left, Image Right) */}
-                    <div class="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-20 group">
-                        <div class="w-full lg:w-1/2 relative z-10">
-                            <div class="relative rounded-3xl overflow-hidden transform transition-transform duration-700 group-hover:scale-[1.02]">
-                                <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors z-10"></div>
-                                <img 
-                                    src="https://images.unsplash.com/photo-1550355291-bbee04a92027?q=80&w=1000" 
-                                    alt="Noleggio Lungo Termine" 
-                                    class="w-full h-auto object-cover aspect-[4/3]"
-                                />
-                                 {/* Floating Badge */}
-                                <div class="absolute bottom-8 right-8 z-20 bg-primary/90 backdrop-blur text-white px-6 py-3 rounded-2xl font-bold border border-white/10">
-                                    Tutto incluso
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="w-full lg:w-1/2">
-                            <div class="flex items-center gap-4 mb-6">
-                                <div class="w-12 h-12 rounded-2xl bg-primary text-white flex items-center justify-center shadow-lg shadow-primary/30">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-                                </div>
-                                <h3 class="heading-2 text-primary">Lungo Termine</h3>
-                            </div>
-                            
-                            <p class="text-lead text-gray-500 mb-8">
-                                La soluzione definitiva per privati e aziende. Guida l'auto dei tuoi sogni con un unico canone mensile che copre ogni spesa.
-                            </p>
-
-                            <ul class="space-y-4 mb-10">
-                                <li class="flex items-start gap-4">
-                                     <span class="mt-1 w-2 h-2 rounded-full bg-primary flex-shrink-0"></span>
-                                     <span class="text-gray-600 font-medium text-lg">Zero anticipo disponibile</span>
-                                </li>
-                                <li class="flex items-start gap-4">
-                                     <span class="mt-1 w-2 h-2 rounded-full bg-primary flex-shrink-0"></span>
-                                     <span class="text-gray-600 font-medium text-lg">Manutenzione, bollo e assicurazione</span>
-                                </li>
-                                <li class="flex items-start gap-4">
-                                     <span class="mt-1 w-2 h-2 rounded-full bg-primary flex-shrink-0"></span>
-                                     <span class="text-gray-600 font-medium text-lg">Permuta del tuo usato valutata al massimo</span>
-                                </li>
-                            </ul>
-
-                            <Button href="/lungo-termine" as="a" variant="outline" size="lg" className="px-10 border-primary text-primary hover:bg-primary hover:text-white">
-                                Scopri i Vantaggi
                             </Button>
                         </div>
                     </div>

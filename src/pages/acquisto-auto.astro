@@ -1,0 +1,229 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import Button from '../components/ui/Button';
+import ValuationModal from '../components/ValuationModal';
+---
+
+<Layout title="Acquisto Auto | DSAS Mobility">
+	<Header client:load /> 
+    <ValuationModal client:load />
+	
+	<main>
+		{/* HERO SECTION */}
+		<section class="relative bg-primary py-24 text-white overflow-hidden">
+             {/* Background Decoration */}
+             <div class="absolute top-0 right-0 w-1/2 h-full bg-secondary/10 -skew-x-12 transform translate-x-24"></div>
+             <div class="absolute bottom-0 left-0 w-64 h-64 bg-secondary/20 rounded-full blur-3xl opacity-50"></div>
+
+			<div class="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="text-center lg:text-left animate-fade-in-up">
+                        <span class="inline-block bg-white/10 text-secondary px-4 py-1.5 rounded-pill text-xs font-bold mb-6 border border-white/20 uppercase tracking-wider">
+                            VALUTAZIONE GRATUITA
+                        </span>
+                        <h1 class="text-4xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
+                            Vuoi vendere la <br/>
+                            <span class="text-secondary">tua auto?</span>
+                        </h1>
+                        <p class="text-xl text-gray-300 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                            Acquistiamo il tuo veicolo usata in modo semplice, veloce e sicuro. Ricevi una valutazione immediata e il pagamento istantaneo.
+                        </p>
+                        						<div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                            <div id="btn-valutazione-hero">
+                                <Button variant="primary" size="lg" className="shadow-lg hover:shadow-secondary/50" client:load>
+                                    Richiedi Valutazione
+                                </Button>
+                            </div>
+                            <div id="btn-come-funziona">
+                                <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary" client:load>
+                                    Come Funziona
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {/* Hero Image/Visual */}
+                    <div class="relative hidden lg:block animate-fade-in delay-200">
+                        <div class="absolute inset-0 bg-secondary/20 rounded-full blur-3xl transform scale-75"></div>
+                        <img 
+                            src="https://res.cloudinary.com/dskliu1ig/image/upload/v1768927798/img-venta_s6sq7x.webp" 
+                            alt="Vendita Auto Usata" 
+                            class="relative z-10 w-full h-auto rounded-[30px] shadow-2xl border-4 border-white/10 transform hover:scale-[1.02] transition-transform duration-500"
+                        />
+                    </div>
+                </div>
+			</div>
+		</section>
+
+        {/* FEATURES / VALUE PROP */}
+        <section class="py-20 bg-gray-50">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl lg:text-5xl font-bold text-primary mb-6">Perché vendere a <span class="text-secondary">Noi?</span></h2>
+                    <p class="text-gray-500 max-w-2xl mx-auto">Dimentica lo stress delle trattative private. Offriamo un servizio professionale e trasparente.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    {/* Card 1 */}
+                    <div class="bg-white p-8 rounded-[24px] shadow-soft hover:shadow-xl transition-all duration-300 border border-gray-100 group">
+                        <div class="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-3">Pagamento Immediato</h3>
+                        <p class="text-gray-500 leading-relaxed">
+                            Nessuna attesa. Una volta accettata la nostra offerta, riceverai il bonifico istantaneo sul tuo conto corrente.
+                        </p>
+                    </div>
+
+                    {/* Card 2 */}
+                    <div class="bg-white p-8 rounded-[24px] shadow-soft hover:shadow-xl transition-all duration-300 border border-gray-100 group">
+                        <div class="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-3">Zero Burocrazia</h3>
+                        <p class="text-gray-500 leading-relaxed">
+                            Ci occupiamo noi di tutto: passaggio di proprietà, documenti e pratiche amministrative. Tu devi solo firmare.
+                        </p>
+                    </div>
+
+                    {/* Card 3 */}
+                    <div class="bg-white p-8 rounded-[24px] shadow-soft hover:shadow-xl transition-all duration-300 border border-gray-100 group">
+                        <div class="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-3">Valutazione Reale</h3>
+                        <p class="text-gray-500 leading-relaxed">
+                            Quotazioni basate sul reale valore di mercato, senza svalutazioni ingiustificate. Onestà al primo posto.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {/* COME FUNZIONA SECTION */}
+        <section id="come-funziona" class="py-24 bg-white relative overflow-hidden">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center mb-20">
+                    <span class="text-secondary font-bold tracking-widest uppercase text-sm">Semplice e Veloce</span>
+                    <h2 class="text-3xl lg:text-5xl font-bold text-primary mt-3">Come Funziona?</h2>
+                </div>
+
+                <div class="relative">
+                    {/* Connecting Line (Desktop) */}
+                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-gray-100 -translate-y-1/2 z-0"></div>
+
+                    <div class="grid md:grid-cols-4 gap-8 relative z-10">
+                        {/* Step 1 */}
+                        <div class="group">
+                            <div class="bg-white p-2 rounded-full w-20 h-20 mx-auto border-4 border-gray-50 mb-6 relative z-10 group-hover:border-secondary/20 transition-all">
+                                <div class="w-full h-full bg-primary rounded-full flex items-center justify-center text-white text-xl font-bold group-hover:bg-secondary transition-colors">
+                                    1
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <h3 class="text-lg font-bold text-primary mb-2">Compila il Form</h3>
+                                <p class="text-gray-500 text-sm leading-relaxed px-4">Inserisci i dati della tua auto e i tuoi contatti nel nostro modulo sicuro.</p>
+                            </div>
+                        </div>
+
+                        {/* Step 2 */}
+                        <div class="group">
+                             <div class="bg-white p-2 rounded-full w-20 h-20 mx-auto border-4 border-gray-50 mb-6 relative z-10 group-hover:border-secondary/20 transition-all">
+                                <div class="w-full h-full bg-primary rounded-full flex items-center justify-center text-white text-xl font-bold group-hover:bg-secondary transition-colors">
+                                    2
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <h3 class="text-lg font-bold text-primary mb-2">Ricevi la Stima</h3>
+                                <p class="text-gray-500 text-sm leading-relaxed px-4">Un nostro esperto ti contatterà con una prima valutazione gratuita.</p>
+                            </div>
+                        </div>
+
+                        {/* Step 3 */}
+                        <div class="group">
+                             <div class="bg-white p-2 rounded-full w-20 h-20 mx-auto border-4 border-gray-50 mb-6 relative z-10 group-hover:border-secondary/20 transition-all">
+                                <div class="w-full h-full bg-primary rounded-full flex items-center justify-center text-white text-xl font-bold group-hover:bg-secondary transition-colors">
+                                    3
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <h3 class="text-lg font-bold text-primary mb-2">Perizia Veloce</h3>
+                                <p class="text-gray-500 text-sm leading-relaxed px-4">Breve appuntamento per confermare le condizioni del veicolo.</p>
+                            </div>
+                        </div>
+
+                        {/* Step 4 */}
+                        <div class="group">
+                             <div class="bg-white p-2 rounded-full w-20 h-20 mx-auto border-4 border-gray-50 mb-6 relative z-10 group-hover:border-secondary/20 transition-all">
+                                <div class="w-full h-full bg-primary rounded-full flex items-center justify-center text-white text-xl font-bold group-hover:bg-secondary transition-colors">
+                                    4
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <h3 class="text-lg font-bold text-primary mb-2">Pagamento Subito</h3>
+                                <p class="text-gray-500 text-sm leading-relaxed px-4">Bonifico istantaneo e passaggio di proprietà a nostro carico.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {/* CTA STRIP */}
+        <section class="py-16 bg-white border-t border-gray-100">
+             <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-primary rounded-[30px] p-8 md:p-12 overflow-hidden relative text-center">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                    
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 relative z-10">
+                        Pronto a vendere la tua auto?
+                    </h2>
+                    <p class="text-gray-300 max-w-2xl mx-auto mb-8 relative z-10 text-lg">
+                        Compila il modulo di contatto o chiamaci per fissare un appuntamento gratuito con i nostri esperti.
+                    </p>
+                    <div class="relative z-10" id="btn-valutazione-cta">
+                        <Button variant="primary" size="lg" className="px-10 py-4 text-lg shadow-lg hover:shadow-white/20" client:load>
+                            Contattaci Ora
+                        </Button>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+	</main>
+    
+    <Footer />
+</Layout>
+
+<script>
+    // Initialize Interactivity
+    document.addEventListener('DOMContentLoaded', () => {
+        const openModal = () => {
+             // Check if function exists (it should be attached to window by the React component)
+             if ((window as any).openValuationModal) {
+                 (window as any).openValuationModal();
+             } else {
+                 console.error('ValuationModal function not found');
+                 // Fallback if React hasn't hydrated yet - rare with client:load but possible logic
+                 // Could retry or show alert
+                 alert('Caricamento in corso... Riprova tra un istante.');
+             }
+        };
+
+        const heroBtn = document.getElementById('btn-valutazione-hero');
+        const ctaBtn = document.getElementById('btn-valutazione-cta');
+        const comeFunzionaBtn = document.getElementById('btn-come-funziona');
+
+        heroBtn?.addEventListener('click', openModal);
+        ctaBtn?.addEventListener('click', openModal);
+        
+        comeFunzionaBtn?.addEventListener('click', () => {
+            const section = document.getElementById('come-funziona');
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+</script>

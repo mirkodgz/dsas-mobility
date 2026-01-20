@@ -1,0 +1,11 @@
+Found vehicles:
+ID: 89737d61-59a7-4726-bad6-5b688907249f
+Marca: "CITROEN"
+Modello: "C3 PureTech"
+Slug: "CITROEN-PureTech "
+-------------------
+ID: 7a6ea467-315b-40a5-be49-954e21062b93
+Marca: "CITROEN"
+Modello: "CITROEN C3 Aircross"
+Slug: "CITROEN-C3-Aircross"
+-------------------

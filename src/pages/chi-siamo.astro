@@ -59,59 +59,14 @@ const TEAM = [
     <Header client:load />
 
     <main>
-        {/* NEW HERO - CLEAN & TYPOGRAPHIC */}
-        <section class="py-20 lg:py-32 bg-white overflow-hidden relative">
-            <div class="container-custom relative z-10">
-                <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
-                    
-                    {/* Text Content */}
-                    <div class="lg:w-1/2">
-                        <span class="text-subtitle">La Nostra Visione</span>
-                        <h1 class="heading-1 text-primary mb-8 text-balance">
-                            Più di un Noleggio, <br/>
-                            <span class="text-secondary">una Promessa.</span>
-                        </h1>
-                        <p class="text-lead text-gray-500 mb-10 max-w-lg">
-                            DSAS Mobility ridefinisce il concetto di possesso dell'auto. Siamo il ponte tra le tue esigenze di movimento e la libertà di guidare senza pensieri.
-                        </p>
-                        
-
-                    </div>
-
-                    {/* Minimal Image Composition */}
-                    <div class="lg:w-1/2 relative">
-                         {/* Abstract Shape Background */}
-                         <div class="absolute -top-10 -right-10 w-[120%] h-[120%] bg-gray-50 rounded-full blur-3xl opacity-50 -z-10"></div>
-                         
-                         <div class="relative grid grid-cols-1 sm:grid-cols-2 gap-6">
-                             <div class="transform sm:translate-y-12">
-                                 <img 
-                                    src="https://img.freepik.com/foto-gratis/vista-frontal-mujer-conduciendo-divirtiendose_23-2148691783.jpg?semt=ais_hybrid&w=740&q=80" 
-                                    class="rounded-[20px] shadow-2xl w-full h-64 sm:h-80 lg:h-96 object-cover animate-float"
-                                    alt="Woman Driving"
-                                 />
-                             </div>
-                             <div>
-                                 <img 
-                                    src="https://i.pinimg.com/736x/1c/df/31/1cdf31c9cc3e47fce0db9d5dd886597f.jpg" 
-                                    class="rounded-[20px] shadow-2xl w-full h-64 sm:h-80 lg:h-96 object-cover animate-float-delayed"
-                                    alt="Car Lifestyle"
-                                 />
-                             </div>
-                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        {/* CORPORATE PRESENTATION (MOVED & RENAMED) */}
-        <section class="py-24 bg-gray-50">
+        {/* CORPORATE PRESENTATION (MOVED TO TOP) */}
+        <section class="py-20 lg:py-32 bg-gray-50 overflow-hidden relative">
             <div class="container-custom">
                 <div class="flex flex-col-reverse lg:flex-row items-center gap-16 lg:gap-24">
                     <div class="lg:w-1/2 relative">
                          <div class="absolute -top-4 -left-4 w-24 h-24 bg-secondary/10 rounded-full -z-10"></div>
                          <img 
-                            src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1000&auto=format&fit=crop" 
+                            src="https://res.cloudinary.com/dskliu1ig/image/upload/v1768907136/Gemini_Generated_Image_n5px24n5px24n5px_ysyviq.png" 
                             alt="DSAS Mobility Meeting" 
                             class="rounded-[20px] shadow-2xl w-full object-cover h-64 lg:h-[500px] animate-float"
                         />
@@ -120,7 +75,7 @@ const TEAM = [
                     
                     <div class="lg:w-1/2">
                         <span class="text-subtitle">Chi Siamo</span>
-                        <h2 class="heading-2 text-primary mb-6">Un punto di riferimento per la mobilità moderna.</h2>
+                        <h1 class="heading-1 text-primary mb-6">Un punto di riferimento per la mobilità moderna.</h1>
                         <div class="space-y-6 text-lg text-gray-500 leading-relaxed">
                             <p>
                                 <strong class="text-primary font-bold">DSAS Mobility</strong> non è solo un'agenzia di noleggio, è il tuo consulente personale nel complesso mondo dell'automotive. 
@@ -147,6 +102,51 @@ const TEAM = [
                                 </li>
                             </ul>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {/* FORMER HERO (MOVED DOWN) */}
+        <section class="py-24 bg-white">
+            <div class="container-custom relative z-10">
+                <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+                    
+                    {/* Text Content */}
+                    <div class="lg:w-1/2">
+                        <span class="text-subtitle">La Nostra Visione</span>
+                        <h2 class="heading-2 text-primary mb-8 text-balance">
+                            Più di un Noleggio, <br/>
+                            <span class="text-secondary">una Promessa.</span>
+                        </h2>
+                        <p class="text-lead text-gray-500 mb-10 max-w-lg">
+                            DSAS Mobility ridefinisce il concetto di possesso dell'auto. Siamo il ponte tra le tue esigenze di movimento e la libertà di guidare senza pensieri.
+                        </p>
+                        
+
+                    </div>
+
+                    {/* Minimal Image Composition */}
+                    <div class="lg:w-1/2 relative">
+                         {/* Abstract Shape Background */}
+                         <div class="absolute -top-10 -right-10 w-[120%] h-[120%] bg-gray-50 rounded-full blur-3xl opacity-50 -z-10"></div>
+                         
+                         <div class="relative grid grid-cols-1 sm:grid-cols-2 gap-6">
+                             <div class="transform sm:translate-y-12">
+                                 <img 
+                                    src="https://res.cloudinary.com/dskliu1ig/image/upload/v1768907770/chisiamo1_a6yizz.jpg" 
+                                    class="rounded-[20px] shadow-2xl w-full h-64 sm:h-80 lg:h-96 object-cover animate-float"
+                                    alt="Woman Driving"
+                                 />
+                             </div>
+                             <div>
+                                 <img 
+                                    src="https://res.cloudinary.com/dskliu1ig/image/upload/v1768907764/chisiamo2_fmxvct.jpg" 
+                                    class="rounded-[20px] shadow-2xl w-full h-64 sm:h-80 lg:h-96 object-cover animate-float-delayed"
+                                    alt="Car Lifestyle"
+                                 />
+                             </div>
+                         </div>
                     </div>
                 </div>
             </div>
@@ -181,7 +181,7 @@ const TEAM = [
             </div>
         </section>
 
-        {/* TEAM SECTION (Preserved & Refined) */}
+        {/* TEAM SECTION (HIDDEN)
         <section class="py-24 bg-white overflow-hidden">
             <div class="container-custom">
                 <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
@@ -210,6 +210,7 @@ const TEAM = [
                 </div>
             </div>
         </section>
+        */}
         
 
 

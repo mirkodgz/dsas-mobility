@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Button from '../components/ui/Button';
+import ShortTermModal from '../components/ShortTermModal';
 
 import { supabase } from '../lib/supabase';
 
@@ -34,6 +35,7 @@ const SHORT_TERM_FLEET = shortTermData?.map(v => ({
 
 <Layout title="Noleggio Breve Termine | DSAS Mobility">
     <Header client:load />
+    <ShortTermModal client:load />
 
     <main class="bg-gray-50 min-h-screen pb-20 pt-10">
         <div class="container-custom">
@@ -115,9 +117,21 @@ const SHORT_TERM_FLEET = shortTermData?.map(v => ({
                                                 </div>
                                                 <p class="text-sm font-medium text-gray-600 mb-6">{vehicle.rates.daily.limit}</p>
                                             </div>
-                                            <Button href={`/veicoli/${vehicle.id}`} variant="secondary" size="sm" className="w-full rounded-full text-xs uppercase font-bold tracking-wider py-2">
+                                            <button 
+                                                class="btn-richiedi-st w-full inline-flex items-center justify-center font-bold transition-all duration-300 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none bg-gradient-to-r from-[#0060DF] to-[#8B4CFC] text-white hover:opacity-90 shadow-lg hover:shadow-[#8B4CFC]/30 border border-transparent text-xs px-4 py-2 uppercase tracking-wider"
+                                                data-payload={JSON.stringify({
+                                                    vehicle: `${vehicle.brand} ${vehicle.model}`,
+                                                    brand: vehicle.brand,
+                                                    model: vehicle.model,
+                                                    version: vehicle.version,
+                                                    plan: 'Giornaliero',
+                                                    price: vehicle.rates.daily.price,
+                                                    limit: vehicle.rates.daily.limit,
+                                                    image: vehicle.image
+                                                })}
+                                            >
                                                 Richiedi
-                                            </Button>
+                                            </button>
                                         </div>
                                     </div>
 
@@ -134,9 +148,21 @@ const SHORT_TERM_FLEET = shortTermData?.map(v => ({
                                                 </div>
                                                 <p class="text-sm font-medium text-gray-600 mb-6">{vehicle.rates.weekly.limit}</p>
                                             </div>
-                                            <Button href={`/veicoli/${vehicle.id}`} variant="secondary" size="sm" className="w-full rounded-full text-xs uppercase font-bold tracking-wider py-2">
+                                            <button 
+                                                class="btn-richiedi-st w-full inline-flex items-center justify-center font-bold transition-all duration-300 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none bg-gradient-to-r from-[#0060DF] to-[#8B4CFC] text-white hover:opacity-90 shadow-lg hover:shadow-[#8B4CFC]/30 border border-transparent text-xs px-4 py-2 uppercase tracking-wider"
+                                                data-payload={JSON.stringify({
+                                                    vehicle: `${vehicle.brand} ${vehicle.model}`,
+                                                    brand: vehicle.brand,
+                                                    model: vehicle.model,
+                                                    version: vehicle.version,
+                                                    plan: 'Settimanale',
+                                                    price: vehicle.rates.weekly.price,
+                                                    limit: vehicle.rates.weekly.limit,
+                                                    image: vehicle.image
+                                                })}
+                                            >
                                                 Richiedi
-                                            </Button>
+                                            </button>
                                         </div>
                                     </div>
 
@@ -153,9 +179,21 @@ const SHORT_TERM_FLEET = shortTermData?.map(v => ({
                                                 </div>
                                                 <p class="text-sm font-medium text-gray-600 mb-6">{vehicle.rates.monthly.limit}</p>
                                             </div>
-                                            <Button href={`/veicoli/${vehicle.id}`} variant="secondary" size="sm" className="w-full rounded-full text-xs uppercase font-bold tracking-wider py-2">
+                                            <button 
+                                                class="btn-richiedi-st w-full inline-flex items-center justify-center font-bold transition-all duration-300 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none bg-gradient-to-r from-[#0060DF] to-[#8B4CFC] text-white hover:opacity-90 shadow-lg hover:shadow-[#8B4CFC]/30 border border-transparent text-xs px-4 py-2 uppercase tracking-wider"
+                                                data-payload={JSON.stringify({
+                                                    vehicle: `${vehicle.brand} ${vehicle.model}`,
+                                                    brand: vehicle.brand,
+                                                    model: vehicle.model,
+                                                    version: vehicle.version,
+                                                    plan: 'Mensile',
+                                                    price: vehicle.rates.monthly.price,
+                                                    limit: vehicle.rates.monthly.limit,
+                                                    image: vehicle.image
+                                                })}
+                                            >
                                                 Richiedi
-                                            </Button>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -176,3 +214,25 @@ const SHORT_TERM_FLEET = shortTermData?.map(v => ({
 
     <Footer />
 </Layout>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.btn-richiedi-st');
+        
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const payload = btn.getAttribute('data-payload');
+                if (payload && (window as any).openShortTermModal) {
+                    try {
+                        const data = JSON.parse(payload);
+                        (window as any).openShortTermModal(data);
+                    } catch (e) {
+                        console.error('Error parsing vehicle data', e);
+                    }
+                } else {
+                    console.error('Modal function not found or payload missing');
+                }
+            });
+        });
+    });
+</script>

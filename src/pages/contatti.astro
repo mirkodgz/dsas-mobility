@@ -81,47 +81,47 @@ import Footer from '../components/Footer';
                             
                             <h2 class="text-3xl font-bold text-primary mb-8">Inviaci un Messaggio</h2>
                             
-                            <form class="space-y-6">
+                            <form id="contactForm" class="space-y-6">
                                 <div class="grid md:grid-cols-2 gap-6">
                                     <div class="space-y-2">
                                         <label for="name" class="text-sm font-bold text-gray-700 ml-1">Nome</label>
-                                        <input type="text" id="name" placeholder="Il tuo nome" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary transition-all" />
+                                        <input type="text" id="name" name="name" required placeholder="Il tuo nome" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary transition-all" />
                                     </div>
                                     <div class="space-y-2">
                                         <label for="surname" class="text-sm font-bold text-gray-700 ml-1">Cognome</label>
-                                        <input type="text" id="surname" placeholder="Il tuo cognome" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary transition-all" />
+                                        <input type="text" id="surname" name="surname" required placeholder="Il tuo cognome" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary transition-all" />
                                     </div>
                                 </div>
 
                                 <div class="grid md:grid-cols-2 gap-6">
                                     <div class="space-y-2">
                                         <label for="email" class="text-sm font-bold text-gray-700 ml-1">Email</label>
-                                        <input type="email" id="email" placeholder="nome@esempio.it" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary transition-all" />
+                                        <input type="email" id="email" name="email" required placeholder="nome@esempio.it" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary transition-all" />
                                     </div>
                                     <div class="space-y-2">
                                         <label for="phone" class="text-sm font-bold text-gray-700 ml-1">Telefono</label>
-                                        <input type="tel" id="phone" placeholder="+39 ..." class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary transition-all" />
+                                        <input type="tel" id="phone" name="phone" required placeholder="+39 ..." class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary transition-all" />
                                     </div>
                                 </div>
 
                                 <div class="space-y-2">
                                     <label for="subject" class="text-sm font-bold text-gray-700 ml-1">Oggetto</label>
-                                    <select id="subject" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary transition-all appearance-none">
+                                    <select id="subject" name="subject" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary transition-all appearance-none">
                                         <option value="" disabled selected>Seleziona un motivo</option>
-                                        <option value="preventivo">Richiesta Preventivo</option>
-                                        <option value="informazioni">Informazioni Generali</option>
-                                        <option value="business">Servizi Business</option>
-                                        <option value="altro">Altro</option>
+                                        <option value="lungo_termine">Noleggio Lungo Termine</option>
+                                        <option value="breve_termine">Noleggio Breve Termine</option>
+                                        <option value="acquisto_auto">Acquisto Auto</option>
+                                        <option value="altro">Altro / Informazioni</option>
                                     </select>
                                 </div>
 
                                 <div class="space-y-2">
                                     <label for="message" class="text-sm font-bold text-gray-700 ml-1">Messaggio</label>
-                                    <textarea id="message" rows="5" placeholder="Scrivi qui la tua richiesta..." class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary transition-all resize-none"></textarea>
+                                    <textarea id="message" name="message" required rows="5" placeholder="Scrivi qui la tua richiesta..." class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary transition-all resize-none"></textarea>
                                 </div>
 
                                 <div class="pt-4 flex flex-col md:flex-row items-center gap-6">
-                                    <button type="button" class="w-full md:w-auto bg-secondary text-white px-10 py-4 rounded-pill font-bold hover:bg-orange-600 transition-all shadow-lg hover:shadow-orange-500/30 transform hover:-translate-y-1">
+                                    <button type="submit" id="submitBtn" class="w-full md:w-auto bg-gradient-to-r from-[#0060DF] to-[#8B4CFC] text-white px-10 py-4 rounded-full font-bold hover:opacity-90 transition-all shadow-lg hover:shadow-[#8B4CFC]/30 transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed">
                                         Invia Messaggio
                                     </button>
                                     <p class="text-xs text-gray-400 max-w-xs text-center md:text-left">
@@ -135,18 +135,66 @@ import Footer from '../components/Footer';
             </div>
         </section>
 
-        {/* MAP SECTION (Placeholder) */}
-        <section class="h-96 w-full bg-gray-200 relative">
-             <div class="absolute inset-0 flex items-center justify-center bg-gray-200 text-gray-400">
-                <div class="text-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-4"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-                    <span class="font-bold tracking-widest uppercase">Mappa Google Interattiva</span>
-                </div>
-             </div>
-             {/* If real map: <iframe src="..." class="w-full h-full border-0" allowfullscreen="" loading="lazy"></iframe> */}
-        </section>
+
 
 	</main>
     
     <Footer />
 </Layout>
+
+<script>
+    const form = document.getElementById('contactForm') as HTMLFormElement;
+    const submitBtn = document.getElementById('submitBtn') as HTMLButtonElement;
+
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Set loading state
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = 'Invio in corso...';
+            submitBtn.disabled = true;
+
+            // Gather data
+            const formData = new FormData(form);
+            const data = {
+                leadType: 'contact',
+                user: {
+                    name: formData.get('name'),
+                    surname: formData.get('surname'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    subject: formData.get('subject'),
+                    message: formData.get('message'),
+                    type: 'private' // Default for generic contact
+                }
+            };
+
+            try {
+                const response = await fetch('/api/leads', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    alert('Messaggio inviato con successo! Ti risponderemo al più presto.');
+                    form.reset();
+                } else {
+                    throw new Error(result.error || 'Errore durante l\'invio');
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                alert('Si è verificato un errore. Per favore riprova o contattaci telefonicamente.');
+            } finally {
+                // Reset loading state
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+    }
+</script>

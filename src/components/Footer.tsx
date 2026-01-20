@@ -7,8 +7,8 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                     {/* COLUMN 1: BRAND */}
                     <div>
-                        <div className="font-bold text-2xl tracking-tighter text-primary mb-6">
-                            DSAS<span className="text-secondary">Mobility</span>
+                        <div className="mb-6">
+                            <img src="/logo_dsas.webp" alt="DSAS Mobility" className="h-12 w-auto object-contain" />
                         </div>
                         <p className="text-gray-500 mb-6 leading-relaxed">
                             Il punto di riferimento per il noleggio a lungo termine in Italia.
@@ -70,7 +70,7 @@ export default function Footer() {
 
                 <div className="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
                     <p>© 2024 DSAS Mobility S.r.l. - P.IVA 12345678901</p>
-                    <p>Designed with ❤️ for High Performance</p>
+
                 </div>
             </div>
         </footer>

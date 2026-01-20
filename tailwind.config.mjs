@@ -5,7 +5,7 @@ export default {
         extend: {
             colors: {
                 primary: '#004080', // Deep Trust Blue
-                secondary: '#FF8C00', // Vibrant Orange
+                secondary: '#6234eb', // Premium Purple
                 background: '#F5F5F5', // Light Gray
             },
             fontFamily: {
