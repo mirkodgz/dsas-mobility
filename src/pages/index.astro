@@ -484,7 +484,7 @@ const FEATURED_VEHICLES =
                 <div class="text-center max-w-3xl mx-auto mb-16">
                     <span class="text-subtitle">Vantaggi</span>
                     <h2 class="heading-2 text-primary">
-                        Perché noleggiare invece di acquistare?
+                        Perché noleggiare con noi?
                     </h2>
                 </div>
 
@@ -528,7 +528,9 @@ const FEATURED_VEHICLES =
                             per chi cerca certezze e flessibilità.
                         </p>
 
-                        <div class="space-y-8">
+                        <div
+                            class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10"
+                        >
                             {/* Advantage 1 */}
                             <div class="flex gap-6 group">
                                 <div
@@ -555,11 +557,12 @@ const FEATURED_VEHICLES =
                                     >
                                         Costi Certi e Fissi
                                     </h4>
-                                    <p class="text-gray-500 leading-relaxed">
+                                    <p
+                                        class="text-gray-500 leading-relaxed text-sm"
+                                    >
                                         Un unico canone mensile che include
                                         tutto. Nessuna maxi-rata finale a
-                                        sorpresa, solo la certezza delle tue
-                                        spese.
+                                        sorpresa.
                                     </p>
                                 </div>
                             </div>
@@ -590,10 +593,12 @@ const FEATURED_VEHICLES =
                                     >
                                         Manutenzione Inclusa
                                     </h4>
-                                    <p class="text-gray-500 leading-relaxed">
+                                    <p
+                                        class="text-gray-500 leading-relaxed text-sm"
+                                    >
                                         Tagliandi, revisioni e riparazioni
                                         straordinarie sono già pagate. Guida
-                                        senza pensieri e senza costi extra.
+                                        senza pensieri.
                                     </p>
                                 </div>
                             </div>
@@ -626,10 +631,122 @@ const FEATURED_VEHICLES =
                                     >
                                         Nessuna Svalutazione
                                     </h4>
-                                    <p class="text-gray-500 leading-relaxed">
+                                    <p
+                                        class="text-gray-500 leading-relaxed text-sm"
+                                    >
                                         Il valore dell'auto scende ogni giorno.
                                         Con il noleggio, la svalutazione non è
-                                        più un tuo problema finanziario.
+                                        più un tuo problema.
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Advantage 4: Kasko */}
+                            <div class="flex gap-6 group">
+                                <div
+                                    class="w-16 h-16 bg-white border-2 border-primary/10 rounded-2xl flex items-center justify-center text-primary shadow-sm group-hover:bg-primary group-hover:text-white transition-all duration-300 flex-shrink-0"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="28"
+                                        height="28"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        ><path
+                                            d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+                                        ></path></svg
+                                    >
+                                </div>
+                                <div>
+                                    <h4
+                                        class="font-bold text-primary text-xl mb-2"
+                                    >
+                                        Assicurazione Kasko
+                                    </h4>
+                                    <p
+                                        class="text-gray-500 leading-relaxed text-sm"
+                                    >
+                                        Protezione totale per il tuo veicolo
+                                        contro ogni imprevisto durante la guida.
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Advantage 5: Furto e Incendio */}
+                            <div class="flex gap-6 group">
+                                <div
+                                    class="w-16 h-16 bg-white border-2 border-primary/10 rounded-2xl flex items-center justify-center text-primary shadow-sm group-hover:bg-primary group-hover:text-white transition-all duration-300 flex-shrink-0"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="28"
+                                        height="28"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        ><path d="M8 11V7a4 4 0 1 1 8 0v4"
+                                        ></path><rect
+                                            x="5"
+                                            y="11"
+                                            width="14"
+                                            height="10"
+                                            rx="2"></rect><path d="M12 15v2"
+                                        ></path></svg
+                                    >
+                                </div>
+                                <div>
+                                    <h4
+                                        class="font-bold text-primary text-xl mb-2"
+                                    >
+                                        Furto e Incendio
+                                    </h4>
+                                    <p
+                                        class="text-gray-500 leading-relaxed text-sm"
+                                    >
+                                        Copertura completa per viaggiare in
+                                        totale sicurezza contro ogni evenienza.
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Advantage 6: Infortunio Conducente */}
+                            <div class="flex gap-6 group">
+                                <div
+                                    class="w-16 h-16 bg-white border-2 border-primary/10 rounded-2xl flex items-center justify-center text-primary shadow-sm group-hover:bg-primary group-hover:text-white transition-all duration-300 flex-shrink-0"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="28"
+                                        height="28"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        ><path
+                                            d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
+                                        ></path></svg
+                                    >
+                                </div>
+                                <div>
+                                    <h4
+                                        class="font-bold text-primary text-xl mb-2"
+                                    >
+                                        Infortunio Conducente
+                                    </h4>
+                                    <p
+                                        class="text-gray-500 leading-relaxed text-sm"
+                                    >
+                                        Siamo attenti alla tua incolumità con
+                                        una polizza specifica per chi guida.
                                     </p>
                                 </div>
                             </div>
