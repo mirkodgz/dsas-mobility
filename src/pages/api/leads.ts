@@ -9,10 +9,10 @@ export const POST: APIRoute = async ({ request }) => {
         const body = await request.json();
         const { vehicle, version, config, user, leadType = 'rental' } = body;
 
-        // Use Service Role Key to bypass RLS
+        // Use Public Anon Key (Allowed by RLS for Insert)
         const supabaseAdmin = createClient(
             import.meta.env.PUBLIC_SUPABASE_URL,
-            import.meta.env.SUPABASE_SERVICE_ROLE_KEY
+            import.meta.env.PUBLIC_SUPABASE_ANON_KEY
         );
 
         // 1. Insert into Supabase (Primary Source of Truth)

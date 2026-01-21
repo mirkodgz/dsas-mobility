@@ -12,7 +12,7 @@ const isActive = (path: string) => currentPath === path ? 'text-primary bg-prima
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/webp" href="/DSAS-Mobility-Logo-v1.webp" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title} | DSAS Admin</title>
 	</head>
@@ -20,8 +20,8 @@ const isActive = (path: string) => currentPath === path ? 'text-primary bg-prima
         <div class="flex h-screen overflow-hidden">
             <!-- ADMIN SIDEBAR -->
             <aside class="w-64 bg-white border-r border-gray-200 hidden md:flex flex-col">
-                <div class="h-16 flex items-center px-6 border-b border-gray-100">
-                    <span class="font-bold text-xl text-primary">DSAS <span class="text-secondary">Admin</span></span>
+                <div class="h-20 flex items-center px-6 border-b border-gray-100">
+                    <img src="/logo_dsas.webp" alt="DSAS Mobility Admin" class="h-10 w-auto" />
                 </div>
                 
                 <nav class="flex-1 overflow-y-auto py-4">
@@ -30,6 +30,12 @@ const isActive = (path: string) => currentPath === path ? 'text-primary bg-prima
                             <a href="/admin" class={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${isActive('/admin')}`}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
                                 <span class="font-medium">Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/leads" class={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${isActive('/admin/leads')}`}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                <span class="font-medium">Richieste</span>
                             </a>
                         </li>
                         <li>
