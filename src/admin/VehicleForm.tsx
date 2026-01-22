@@ -244,7 +244,7 @@ export default function VehicleForm({ initialData }: VehicleFormProps) {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 gap-y-8 w-full">
                         <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-2">Titolo Annuncio *</label>
+                            <label className="block text-sm font-semibold text-gray-700 mb-2">Veicolo *</label>
                             <input type="text" name="title" value={formData.title} onChange={handleChange} className="w-full h-12 px-4 rounded-lg bg-gray-50 border border-gray-200 text-gray-900 focus:bg-white focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all placeholder-gray-400" placeholder="Es. Fiat 500 Dolcevita" required />
                         </div>
                         <div>
