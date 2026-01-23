@@ -90,9 +90,12 @@ export default function Configurator({
 
             if (!response.ok) throw new Error(result.error || 'Errore sconosciuto');
 
-            alert('Richiesta inviata con successo! Verrai contattato a breve.');
-            setIsModalOpen(false);
-            setFormData({ ...formData, message: '', privacy: false, marketing: false });
+            // alert('Richiesta inviata con successo! Verrai contattato a breve.');
+            // setIsModalOpen(false);
+            // setFormData({ ...formData, message: '', privacy: false, marketing: false });
+
+            // Redirect
+            window.location.href = '/grazie';
 
         } catch (error: any) {
             console.error(error);

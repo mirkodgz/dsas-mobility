@@ -62,11 +62,13 @@ export default function ValuationModal() {
 
             if (!response.ok) throw new Error(result.error || 'Errore sconosciuto');
 
-            alert('Richiesta inviata con successo! Un nostro esperto ti contatterà per la valutazione.');
-            setIsModalOpen(false);
-            setFormData({
-                name: '', email: '', phone: '', vehicleInfo: '', message: '', privacy: false
-            });
+            // alert('Richiesta inviata con successo! Un nostro esperto ti contatterà per la valutazione.');
+            // setIsModalOpen(false);
+            // setFormData({
+            //     name: '', email: '', phone: '', vehicleInfo: '', message: '', privacy: false
+            // });
+
+            window.location.href = '/grazie';
 
         } catch (error: any) {
             console.error(error);
