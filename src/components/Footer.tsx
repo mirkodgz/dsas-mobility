@@ -11,6 +11,7 @@ export default function Footer() {
                             <img src="/logo_dsas.webp" alt="DSAS Mobility" className="h-12 w-auto object-contain" />
                         </div>
                         <p className="text-gray-500 mb-6 leading-relaxed">
+                            <span className="font-bold text-primary block mb-1">Oltre il semplice noleggio.</span>
                             Il punto di riferimento per il noleggio a lungo termine in Italia.
                             Semplice, trasparente, digitale.
                         </p>
