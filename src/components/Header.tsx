@@ -31,7 +31,7 @@ export default function Header() {
                 {/* DESKTOP NAV */}
                 <nav className="hidden md:flex items-center gap-6 lg:gap-8 font-bold text-gray-800 text-sm lg:text-base">
                     <a href="/lungo-termine" className={navLinkClass('/lungo-termine')}>Noleggio LUNGO TERMINE</a>
-                    {/* <a href="/breve-termine" className={navLinkClass('/breve-termine')}>Noleggio BREVE TERMINE</a> */}
+                    <a href="/noleggio-luxury" className={navLinkClass('/noleggio-luxury')}>Noleggio LUXURY</a>
                     <a href="/acquisto-auto" className={navLinkClass('/acquisto-auto')}>ACQUISTO AUTO</a>
                     <a href="/chi-siamo" className={navLinkClassNormal('/chi-siamo')}>Chi siamo</a>
                     <a href="/faq" className={navLinkClassNormal('/faq')}>FAQ</a>
@@ -57,7 +57,7 @@ export default function Header() {
             {isMenuOpen && (
                 <div className="md:hidden absolute top-20 left-0 w-full h-[calc(100vh-80px)] overflow-y-auto bg-white border-b border-gray-100 shadow-xl p-4 flex flex-col gap-4 pb-8">
                     <a href="/lungo-termine" className={`text-lg font-medium uppercase ${currentPath === '/lungo-termine' ? 'text-secondary' : 'text-gray-800'}`}>Noleggio LUNGO TERMINE</a>
-                    {/* <a href="/breve-termine" className={`text-lg font-medium uppercase ${currentPath === '/breve-termine' ? 'text-secondary' : 'text-gray-800'}`}>Noleggio BREVE TERMINE</a> */}
+                    <a href="/noleggio-luxury" className={`text-lg font-medium uppercase ${currentPath === '/noleggio-luxury' ? 'text-secondary' : 'text-gray-800'}`}>Noleggio LUXURY</a>
                     <a href="/acquisto-auto" className={`text-lg font-medium uppercase ${currentPath === '/acquisto-auto' ? 'text-secondary' : 'text-gray-800'}`}>ACQUISTO AUTO</a>
                     <a href="/chi-siamo" className={`text-lg font-medium ${currentPath === '/chi-siamo' ? 'text-secondary' : 'text-gray-800'}`}>Chi siamo</a>
                     <a href="/faq" className={`text-lg font-medium ${currentPath === '/faq' ? 'text-secondary' : 'text-gray-800'}`}>FAQ</a>

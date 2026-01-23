@@ -1,0 +1,61 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import LuxuryCatalog from "../components/LuxuryCatalog";
+
+import { supabase } from "../lib/supabase";
+
+// Fetch SHORT TERM Vehicles
+const { data: shortTermData } = await supabase
+    .from("veicoli")
+    .select("*")
+    .eq("noleggio_breve", true) // Only show vehicles with short term enabled
+    .order("created_at", { ascending: false });
+
+// Provide data to Catalog
+const LUXURY_FLEET =
+    shortTermData?.map((v) => ({
+        brand: v.marca,
+        slug: v.slug || v.id,
+        model: v.modello,
+        version: v.versione || "",
+        image:
+            v.immagine_url ||
+            "https://via.placeholder.com/800x600?text=No+Image",
+        category: v.categoria,
+        fuel: v.alimentazione,
+        transmission: v.cambio,
+        price: v.prezzo_giornaliero || 0,
+        priceLabel: "/giorno",
+        available: true, // Luxury vehicles usually ready
+    })) || [];
+---
+
+<Layout title="Noleggio Luxury | DSAS Mobility">
+    <Header client:load />
+
+    <main class="bg-gray-50 min-h-screen pb-20 pt-10">
+        <div class="py-8">
+            <div class="container-custom">
+                {/* PAGE TITLE */}
+                <div class="text-center mb-12">
+                    <h1
+                        class="text-3xl md:text-5xl font-bold uppercase tracking-tight text-primary"
+                    >
+                        NOLEGGIO <span class="text-secondary">LUXURY</span>
+                    </h1>
+                </div>
+
+                {/* LUXURY CATALOG (Top Filter + Grid) */}
+                <LuxuryCatalog
+                    client:load
+                    initialVehicles={LUXURY_FLEET}
+                    hidePrice={true}
+                />
+            </div>
+        </div>
+    </main>
+
+    <Footer />
+</Layout>

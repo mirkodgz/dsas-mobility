@@ -12,6 +12,8 @@ interface VehicleProps {
     transmission: string;
     available: boolean;
     slug?: string;
+    priceLabel?: string;
+    hidePrice?: boolean;
 }
 
 export default function VehicleCard({ vehicle }: { vehicle: VehicleProps }) {
@@ -54,14 +56,20 @@ export default function VehicleCard({ vehicle }: { vehicle: VehicleProps }) {
 
                 {/* BOTTOM ACTION */}
                 <div className="mt-auto flex items-end justify-between">
-                    <div className="flex flex-col">
-                        <span className="text-xs text-gray-500 font-medium">Da</span>
-                        <div className="flex items-baseline gap-1">
-                            <span className="text-2xl font-bold text-primary">€{vehicle.price}</span>
-                            <span className="text-sm text-gray-400 font-medium">/mese</span>
+                    {!vehicle.hidePrice ? (
+                        <div className="flex flex-col">
+                            <span className="text-xs text-gray-500 font-medium">Da</span>
+                            <div className="flex items-baseline gap-1">
+                                <span className="text-2xl font-bold text-primary">€{vehicle.price}</span>
+                                <span className="text-sm text-gray-400 font-medium">{vehicle.priceLabel || '/mese'}</span>
+                            </div>
+                            <span className="text-[10px] text-gray-400">iva esclusa</span>
                         </div>
-                        <span className="text-[10px] text-gray-400">iva esclusa</span>
-                    </div>
+                    ) : (
+                        <div className="flex flex-col">
+                            <span className="text-xs text-secondary font-bold uppercase tracking-wider">Trattativa Riservata</span>
+                        </div>
+                    )}
 
                     <Button variant="primary" size="icon" className="group-hover:scale-110 rounded-full">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>

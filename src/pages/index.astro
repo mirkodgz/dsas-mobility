@@ -222,9 +222,157 @@ const FEATURED_VEHICLES =
                         </div>
                     </div>
 
-                    {/* SERVICE 3: Acquisto Auto (NEW) */}
+                    {/* SERVICE 2: Short Term (MOVED TO SECOND) */}
                     <div
                         class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 group"
+                    >
+                        <div class="w-full lg:w-1/2 relative z-10">
+                            <div
+                                class="relative rounded-3xl overflow-hidden transform transition-transform duration-700 group-hover:scale-[1.02]"
+                            >
+                                <div
+                                    class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors z-10"
+                                >
+                                </div>
+                                <video
+                                    src="https://res.cloudinary.com/dskliu1ig/video/upload/v1769176144/videoauto_xseqnw.mov"
+                                    class="w-full h-full object-cover aspect-[4/3]"
+                                    autoplay
+                                    loop
+                                    muted
+                                    playsinline></video>
+                                {/* Floating Badge */}
+                                <div
+                                    class="absolute bottom-8 left-8 z-20 bg-white/90 backdrop-blur text-primary px-6 py-3 rounded-2xl font-bold border border-white"
+                                >
+                                    Da 39€ /giorno
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-full lg:w-1/2">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div
+                                    class="w-12 h-12 rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    >
+                                        <>
+                                            <rect
+                                                x="3"
+                                                y="4"
+                                                width="18"
+                                                height="18"
+                                                rx="2"
+                                                ry="2"
+                                                transform="rotate(90 12 13)"
+                                            ></rect>
+                                            <line x1="16" y1="2" x2="16" y2="6"
+                                            ></line>
+                                            <line x1="8" y1="2" x2="8" y2="6"
+                                            ></line>
+                                            <line
+                                                x1="8"
+                                                y1="10"
+                                                x2="8"
+                                                y2="10.01"></line>
+                                            <line
+                                                x1="12"
+                                                y1="10"
+                                                x2="12"
+                                                y2="10.01"></line>
+                                            <line
+                                                x1="16"
+                                                y1="10"
+                                                x2="16"
+                                                y2="10.01"></line>
+                                            <line
+                                                x1="8"
+                                                y1="14"
+                                                x2="8"
+                                                y2="14.01"></line>
+                                            <line
+                                                x1="12"
+                                                y1="14"
+                                                x2="12"
+                                                y2="14.01"></line>
+                                            <line
+                                                x1="16"
+                                                y1="14"
+                                                x2="16"
+                                                y2="14.01"></line>
+                                        </>
+                                    </svg>
+                                </div>
+                                <h3 class="heading-2 text-primary">
+                                    Noleggio Luxury
+                                </h3>
+                            </div>
+
+                            <p class="text-lead text-gray-500 mb-8">
+                                Vivi un'esperienza di guida esclusiva per il
+                                weekend o eventi speciali? La nostra selezione
+                                Luxury è la risposta: auto prestigiose, servizio
+                                premium e zero pensieri.
+                            </p>
+
+                            <ul class="space-y-4 mb-10">
+                                <li class="flex items-start gap-4">
+                                    <span
+                                        class="mt-1 w-2 h-2 rounded-full bg-secondary flex-shrink-0"
+                                    ></span>
+                                    <span
+                                        class="text-gray-600 font-medium text-lg"
+                                    >
+                                        Prenotazione online in 2 minuti
+                                    </span>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <span
+                                        class="mt-1 w-2 h-2 rounded-full bg-secondary flex-shrink-0"
+                                    ></span>
+                                    <span
+                                        class="text-gray-600 font-medium text-lg"
+                                    >
+                                        Assicurazione Kasko inclusa
+                                    </span>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <span
+                                        class="mt-1 w-2 h-2 rounded-full bg-secondary flex-shrink-0"
+                                    ></span>
+                                    <span
+                                        class="text-gray-600 font-medium text-lg"
+                                    >
+                                        Cancellazione gratuita fino a 24h
+                                    </span>
+                                </li>
+                            </ul>
+
+                            <Button
+                                href="/noleggio-luxury"
+                                as="a"
+                                variant="primary"
+                                size="lg"
+                                className="px-10"
+                            >
+                                Vedi Le Auto
+                            </Button>
+                        </div>
+                    </div>
+
+                    {/* SERVICE 3: Acquisto Auto (NEW) */}
+                    <div
+                        class="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-20 group"
                     >
                         <div class="w-full lg:w-1/2 relative z-10">
                             <div
@@ -322,154 +470,6 @@ const FEATURED_VEHICLES =
                             </div>
                         </div>
                     </div>
-
-                    {/* SERVICE 2: Short Term (MOVED TO SECOND) */}
-                    {
-                        /* SERVICE 2: Short Term (MOVED TO SECOND) - TEMPORARILY DISABLED */
-                    }
-                    {
-                        false && (
-                            <div class="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-20 group">
-                                <div class="w-full lg:w-1/2 relative z-10">
-                                    <div class="relative rounded-3xl overflow-hidden transform transition-transform duration-700 group-hover:scale-[1.02]">
-                                        <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors z-10" />
-                                        <video
-                                            src="https://res.cloudinary.com/dskliu1ig/video/upload/v1768928741/video-home2_mihrn6.mp4"
-                                            class="w-full h-full object-cover aspect-[4/3]"
-                                            autoplay
-                                            loop
-                                            muted
-                                            playsinline
-                                        />
-                                        {/* Floating Badge */}
-                                        <div class="absolute bottom-8 left-8 z-20 bg-white/90 backdrop-blur text-primary px-6 py-3 rounded-2xl font-bold border border-white">
-                                            Da 39€ /giorno
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="w-full lg:w-1/2">
-                                    <div class="flex items-center gap-4 mb-6">
-                                        <div class="w-12 h-12 rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center">
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="24"
-                                                height="24"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                            >
-                                                <>
-                                                    <rect
-                                                        x="3"
-                                                        y="4"
-                                                        width="18"
-                                                        height="18"
-                                                        rx="2"
-                                                        ry="2"
-                                                        transform="rotate(90 12 13)"
-                                                    />
-                                                    <line
-                                                        x1="16"
-                                                        y1="2"
-                                                        x2="16"
-                                                        y2="6"
-                                                    />
-                                                    <line
-                                                        x1="8"
-                                                        y1="2"
-                                                        x2="8"
-                                                        y2="6"
-                                                    />
-                                                    <line
-                                                        x1="8"
-                                                        y1="10"
-                                                        x2="8"
-                                                        y2="10.01"
-                                                    />
-                                                    <line
-                                                        x1="12"
-                                                        y1="10"
-                                                        x2="12"
-                                                        y2="10.01"
-                                                    />
-                                                    <line
-                                                        x1="16"
-                                                        y1="10"
-                                                        x2="16"
-                                                        y2="10.01"
-                                                    />
-                                                    <line
-                                                        x1="8"
-                                                        y1="14"
-                                                        x2="8"
-                                                        y2="14.01"
-                                                    />
-                                                    <line
-                                                        x1="12"
-                                                        y1="14"
-                                                        x2="12"
-                                                        y2="14.01"
-                                                    />
-                                                    <line
-                                                        x1="16"
-                                                        y1="14"
-                                                        x2="16"
-                                                        y2="14.01"
-                                                    />
-                                                </>
-                                            </svg>
-                                        </div>
-                                        <h3 class="heading-2 text-primary">
-                                            Breve Termine
-                                        </h3>
-                                    </div>
-
-                                    <p class="text-lead text-gray-500 mb-8">
-                                        Hai bisogno di un'auto per il weekend o
-                                        per una trasferta di lavoro? Il nostro
-                                        noleggio breve termine è la risposta:
-                                        flessibile, veloce e senza sorprese.
-                                    </p>
-
-                                    <ul class="space-y-4 mb-10">
-                                        <li class="flex items-start gap-4">
-                                            <span class="mt-1 w-2 h-2 rounded-full bg-secondary flex-shrink-0" />
-                                            <span class="text-gray-600 font-medium text-lg">
-                                                Prenotazione online in 2 minuti
-                                            </span>
-                                        </li>
-                                        <li class="flex items-start gap-4">
-                                            <span class="mt-1 w-2 h-2 rounded-full bg-secondary flex-shrink-0" />
-                                            <span class="text-gray-600 font-medium text-lg">
-                                                Assicurazione Kasko inclusa
-                                            </span>
-                                        </li>
-                                        <li class="flex items-start gap-4">
-                                            <span class="mt-1 w-2 h-2 rounded-full bg-secondary flex-shrink-0" />
-                                            <span class="text-gray-600 font-medium text-lg">
-                                                Cancellazione gratuita fino a
-                                                24h
-                                            </span>
-                                        </li>
-                                    </ul>
-
-                                    <Button
-                                        href="/breve-termine"
-                                        as="a"
-                                        variant="primary"
-                                        size="lg"
-                                        className="px-10"
-                                    >
-                                        Vedi Le Auto
-                                    </Button>
-                                </div>
-                            </div>
-                        )
-                    }
                 </div>
             </div>
         </section>

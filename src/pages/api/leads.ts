@@ -68,6 +68,9 @@ export const POST: APIRoute = async ({ request }) => {
                 case 'short_term':
                     subject = `Noleggio Breve: ${user.name} - ${vehicle}`;
                     break;
+                case 'luxury':
+                    subject = `Richiesta Luxury: ${user.name} - ${vehicle}`;
+                    break;
                 default:
                     subject = `Lead: ${user.name} - ${vehicle || 'Generico'}`;
             }
@@ -115,6 +118,23 @@ export const POST: APIRoute = async ({ request }) => {
                         <li><strong>Nome:</strong> ${user.name}</li>
                         <li><strong>Email:</strong> ${user.email}</li>
                         <li><strong>Telefono:</strong> ${user.phone}</li>
+                    </ul>
+                    <p><strong>Messaggio:</strong><br/>${user.message || 'Nessuno'}</p>
+                `;
+            } else if (leadType === 'luxury') {
+                htmlContent = `
+                    <h1>Richiesta Noleggio Luxury</h1>
+                    <div style="background-color: #000; color: #d4af37; padding: 20px; border-radius: 10px; margin: 15px 0;">
+                        <h2 style="margin: 0 0 10px 0;">${vehicle}</h2>
+                        <p style="margin: 0; opacity: 0.8;">${version}</p>
+                    </div>
+                    <hr />
+                    <h3>Dati Cliente (${user.type === 'piva' ? 'P.IVA' : 'Privato'})</h3>
+                    <ul>
+                        <li><strong>Nome:</strong> ${user.name}</li>
+                        <li><strong>Email:</strong> ${user.email}</li>
+                        <li><strong>Telefono:</strong> ${user.phone}</li>
+                         ${user.fiscalCode ? `<li><strong>CF/P.IVA:</strong> ${user.fiscalCode}</li>` : ''}
                     </ul>
                     <p><strong>Messaggio:</strong><br/>${user.message || 'Nessuno'}</p>
                 `;

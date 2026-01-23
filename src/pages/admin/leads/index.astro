@@ -33,6 +33,8 @@ const getLeadType = (lead: any) => {
     const config = lead.configuration || {};
 
     if (title === "VALUTAZIONE USATO") return "acquisto";
+    if (config.type === "luxury" || config.type === "LUXURY_REQUEST")
+        return "luxury"; // New Luxury Logic
     if (config.plan) return "breve"; // Short term rental has 'plan' in configuration
     if ((!title || title.trim() === "") && Object.keys(config).length === 0)
         return "contatto"; // No vehicle, no config = General Contact
@@ -58,7 +60,9 @@ const getTypeBadge = (type: string) => {
         case "lungo":
             return '<span class="px-2 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold">Lungo Termine</span>';
         case "breve":
-            return '<span class="px-2 py-1 rounded-full bg-purple-100 text-purple-800 text-xs font-bold">Breve Termine</span>';
+            return '<span class="px-2 py-1 rounded-full bg-purple-100 text-purple-800 text-xs font-bold">Noleggio Breve</span>';
+        case "luxury":
+            return '<span class="px-2 py-1 rounded-full bg-yellow-100 text-yellow-800 text-xs font-bold border border-yellow-200">Luxury Collection</span>';
         case "acquisto":
             return '<span class="px-2 py-1 rounded-full bg-orange-100 text-orange-800 text-xs font-bold">Valutazione</span>';
         case "contatto":
@@ -101,7 +105,10 @@ const formatDate = (dateString: string) => {
                     >Noleggio Lungo Termine</option
                 >
                 <option value="breve" selected={filterType === "breve"}
-                    >Noleggio Breve Termine</option
+                    >Noleggio Breve</option
+                >
+                <option value="luxury" selected={filterType === "luxury"}
+                    >Luxury Collection</option
                 >
                 <option value="acquisto" selected={filterType === "acquisto"}
                     >Acquisto Auto</option

@@ -1,13 +1,5 @@
 import { useState, useEffect } from 'react';
 import Button from '../components/ui/Button';
-
-// CONSTANTS
-const BRANDS = ['ALFA', 'AUDI', 'BDY', 'BMW', 'BYD', 'CITROEN', 'CUPRA', 'DACIA', 'DS', 'FIAT', 'FORD', 'HONDA', 'HYUNDAI', 'JEEP', 'KIA', 'LANCIA', 'LAND', 'MASERATI', 'MERCEDES-BENZ', 'MG', 'NISSAN', 'OPEL', 'PEUGEOT', 'POLESTAR', 'PORSCHE', 'RENAULT', 'SEAT', 'SKODA', 'SUZUKI', 'TESLA', 'TOYOTA', 'VOLKSWAGEN', 'VOLVO'];
-const CATEGORIES = ['Berlina', 'City Car', 'Station Wagon', 'SUV / Crossover', 'Veicoli commerciali', 'Cabrio', 'Coupé', 'Monovolume', 'Pick-up', 'Roadster', 'Fuoristrada', 'Elettrica'];
-const FUELS = ['Benzina', 'Diesel', 'Elettrica', 'Ibrida-Benzina', 'Ibrida-Diesel', 'GPL', 'Metano'];
-const TRANSMISSIONS = ['Manuale', 'Automatico'];
-const DELIVERY_TIMES = ['Garanzia di Mobilità', 'Pronta Consegna', 'Veicolo pre-ordinato'];
-
 import { supabase } from '../lib/supabase';
 
 interface VehicleFormProps {
@@ -15,33 +7,30 @@ interface VehicleFormProps {
 }
 
 export default function VehicleForm({ initialData }: VehicleFormProps) {
+    // DYNAMIC LOOKUPS STATE
+    const [brands, setBrands] = useState<string[]>([]);
+    const [categories, setCategories] = useState<string[]>([]);
+    const [fuels, setFuels] = useState<string[]>([]);
+    const [transmissions, setTransmissions] = useState<string[]>([]);
+    const [deliveryTimes, setDeliveryTimes] = useState<string[]>([]);
+
     const INITIAL_STATE = {
         title: '', brand: '', category: '', slug: '', image_url: '', promo: false,
         version: '', model: '', sku: '', transmission: '', fuel: '', delivery_time: '',
         monthly_price: '', duration_months: '', advance_payment: '', annual_km: '',
-        is_short_term: false,
+        is_short_term: false, gallery: [] as string[],
         daily_price: '', daily_km: '', weekly_price: '', weekly_km: '',
         monthly_short_price: '', monthly_short_km: '', deposit: '', extra_km_cost: ''
     };
 
     const [formData, setFormData] = useState(() => {
         if (initialData) {
-
-            // Helper to normalize data from legacy imports
-            const normalize = (val: string, options: string[]) => {
+            // Helper to normalize data (Simplified without constants)
+            const normalize = (val: string) => {
                 if (!val) return '';
-                // Direct match
-                if (options.includes(val)) return val;
-                // Case insensitive match
-                const match = options.find(o => o.toLowerCase() === val.toLowerCase());
-                if (match) return match;
-
-                // Partial/Smart match for specific fields
-                // Transmission
-                if (options.includes('Automatico') && val.toLowerCase().includes('auto')) return 'Automatico';
-                if (options.includes('Manuale') && val.toLowerCase().includes('man')) return 'Manuale';
-
-                return '';
+                // Simple casing normalization if needed, or just return val
+                // formerly used strict lists, now we trust val or let user correct it
+                return val;
             };
 
             return {
@@ -54,10 +43,8 @@ export default function VehicleForm({ initialData }: VehicleFormProps) {
                 version: initialData.versione || '',
                 model: initialData.modello || '',
                 sku: initialData.sku || '',
-
-                // key fix: normalize transmission and fuel
-                transmission: normalize(initialData.cambio, TRANSMISSIONS),
-                fuel: normalize(initialData.alimentazione, FUELS),
+                transmission: initialData.cambio || '', // Removed normalize dependency
+                fuel: initialData.alimentazione || '', // Removed normalize dependency
                 delivery_time: initialData.tempo_consegna || '',
 
                 monthly_price: initialData.canone_mensile || '',
@@ -72,7 +59,8 @@ export default function VehicleForm({ initialData }: VehicleFormProps) {
                 monthly_short_price: initialData.prezzo_mensile_breve || '',
                 monthly_short_km: initialData.km_mensile_breve || '',
                 deposit: initialData.cauzione_richiesta || '',
-                extra_km_cost: initialData.costo_per_km || ''
+                extra_km_cost: initialData.costo_per_km || '',
+                gallery: initialData.gallery || []
             };
         }
         return INITIAL_STATE;
@@ -81,7 +69,39 @@ export default function VehicleForm({ initialData }: VehicleFormProps) {
     const [uploading, setUploading] = useState(false);
     const isEditMode = !!initialData;
 
-    // Auto-generators (Only run if not editing or fields are empty to allow manual override)
+    // FETCH LOOKUPS ON MOUNT
+    useEffect(() => {
+        const fetchLookups = async () => {
+            try {
+                // Fetch Brands
+                const { data: b } = await supabase.from('marche').select('nome').order('nome');
+                if (b) setBrands(b.map(x => x.nome));
+
+                // Fetch Categories
+                const { data: c } = await supabase.from('categorie').select('nome').order('nome');
+                if (c) setCategories(c.map(x => x.nome));
+
+                // Fetch Fuels
+                const { data: f } = await supabase.from('alimentazioni').select('nome').order('nome');
+                if (f) setFuels(f.map(x => x.nome));
+
+                // Fetch Transmissions
+                const { data: t } = await supabase.from('cambi').select('nome').order('nome');
+                if (t) setTransmissions(t.map(x => x.nome));
+
+                // Fetch Delivery Times
+                const { data: d } = await supabase.from('tempi_consegna').select('nome').order('nome');
+                if (d) setDeliveryTimes(d.map(x => x.nome));
+
+            } catch (err) {
+                console.error('Error fetching lookups:', err);
+            }
+        };
+
+        fetchLookups();
+    }, []);
+
+    // Auto-generators
     useEffect(() => {
         if (!isEditMode && formData.title && !formData.slug) {
             const slug = formData.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
@@ -107,11 +127,9 @@ export default function VehicleForm({ initialData }: VehicleFormProps) {
 
         setUploading(true);
         try {
-            // 1. Get Signature
             const signRes = await fetch('/api/sign-cloudinary');
             const signData = await signRes.json();
 
-            // 2. Upload to Cloudinary
             const data = new FormData();
             data.append('file', file);
             data.append('cloud_name', signData.cloud_name);
@@ -139,6 +157,67 @@ export default function VehicleForm({ initialData }: VehicleFormProps) {
         } finally {
             setUploading(false);
         }
+    };
+
+    const [isDragging, setIsDragging] = useState(false);
+
+    const processFiles = async (files: File[]) => {
+        if (files.length === 0) return;
+
+        if (formData.gallery.length + files.length > 10) {
+            alert('Puoi caricare massimo 10 immagini nella galleria.');
+            return;
+        }
+
+        setUploading(true);
+        try {
+            const signRes = await fetch('/api/sign-cloudinary');
+            const signData = await signRes.json();
+
+            const uploadPromises = files.map(async (file: any) => {
+                const data = new FormData();
+                data.append('file', file);
+                data.append('cloud_name', signData.cloud_name);
+                data.append('folder', 'dsas-mobility');
+                data.append('api_key', signData.api_key);
+                data.append('timestamp', signData.timestamp);
+                data.append('signature', signData.signature);
+
+                const res = await fetch(
+                    `https://api.cloudinary.com/v1_1/${signData.cloud_name}/image/upload`,
+                    { method: 'POST', body: data }
+                );
+                const result = await res.json();
+                return result.secure_url;
+            });
+
+            const newUrls = await Promise.all(uploadPromises);
+            const validUrls = newUrls.filter(url => url);
+
+            setFormData((prev: any) => ({
+                ...prev,
+                gallery: [...prev.gallery, ...validUrls]
+            }));
+
+        } catch (error) {
+            console.error('Gallery Upload Error:', error);
+            alert('Errore caricamento galleria');
+        } finally {
+            setUploading(false);
+            setIsDragging(false);
+        }
+    };
+
+    const handleGalleryUpload = async (e: any) => {
+        const files = Array.from(e.target.files || []) as File[];
+        await processFiles(files);
+    };
+
+    const removeGalleryImage = (index: number) => {
+        setFormData((prev: any) => ({
+            ...prev,
+            gallery: prev.gallery.filter((_: any, i: number) => i !== index)
+        }));
     };
 
     const handleSubmit = async (e: any) => {
@@ -171,19 +250,18 @@ export default function VehicleForm({ initialData }: VehicleFormProps) {
                 km_mensile_breve: formData.is_short_term ? Number(formData.monthly_short_km || 0) : null,
                 cauzione_richiesta: formData.is_short_term ? Number(formData.deposit || 0) : null,
                 costo_per_km: formData.is_short_term ? Number(formData.extra_km_cost || 0) : null,
+                gallery: formData.gallery,
             };
 
             let error;
 
             if (isEditMode) {
-                // UPDATE
                 const res = await supabase
                     .from('veicoli')
                     .update(payload)
                     .eq('id', initialData.id);
                 error = res.error;
             } else {
-                // INSERT
                 const res = await supabase
                     .from('veicoli')
                     .insert([payload]);
@@ -197,7 +275,6 @@ export default function VehicleForm({ initialData }: VehicleFormProps) {
             if (!isEditMode) {
                 setFormData(INITIAL_STATE);
             } else {
-                // Is edit mode, maybe redirect back to list?
                 window.location.href = '/admin/veicoli';
             }
 
@@ -251,7 +328,7 @@ export default function VehicleForm({ initialData }: VehicleFormProps) {
                             <label className="block text-sm font-semibold text-gray-700 mb-2">Marca *</label>
                             <select name="brand" value={formData.brand} onChange={handleChange} className="w-full h-12 px-4 rounded-lg bg-gray-50 border border-gray-200 text-gray-900 focus:bg-white focus:border-secondary focus:ring-1 focus:ring-secondary outline-none appearance-none cursor-pointer" required>
                                 <option value="">Selezionare...</option>
-                                {BRANDS.map(b => <option key={b} value={b}>{b}</option>)}
+                                {brands.map(b => <option key={b} value={b}>{b}</option>)}
                             </select>
                         </div>
                         <div>
@@ -267,7 +344,7 @@ export default function VehicleForm({ initialData }: VehicleFormProps) {
                             <label className="block text-sm font-semibold text-gray-700 mb-2">Categoria *</label>
                             <select name="category" value={formData.category} onChange={handleChange} className="w-full h-12 px-4 rounded-lg bg-gray-50 border border-gray-200 text-gray-900 focus:bg-white focus:border-secondary focus:ring-1 focus:ring-secondary outline-none appearance-none cursor-pointer" required>
                                 <option value="">Selezionare...</option>
-                                {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
+                                {categories.map(c => <option key={c} value={c}>{c}</option>)}
                             </select>
                         </div>
                         <div>
@@ -304,7 +381,7 @@ export default function VehicleForm({ initialData }: VehicleFormProps) {
                                         file:text-sm file:font-semibold
                                         file:bg-primary/5 file:text-primary
                                         hover:file:bg-primary/10 file:cursor-pointer cursor-pointer border border-gray-200 rounded-lg"
-                                        required={!isEditMode} // Only required on create, usually we keep existing on edit but if they clear it... 
+                                        required={!isEditMode}
                                     />
                                     {uploading && (
                                         <div className="absolute inset-y-0 right-4 flex items-center">
@@ -313,7 +390,6 @@ export default function VehicleForm({ initialData }: VehicleFormProps) {
                                     )}
                                 </div>
                             )}
-                            {/* Hidden input to ensure value submits if needed */}
                         </div>
                     </div>
                 </div>
@@ -332,21 +408,21 @@ export default function VehicleForm({ initialData }: VehicleFormProps) {
                             <label className="block text-sm font-semibold text-gray-700 mb-2">Alimentazione *</label>
                             <select name="fuel" value={formData.fuel} onChange={handleChange} className="w-full h-12 px-4 rounded-lg bg-gray-50 border border-gray-200 text-gray-900 focus:bg-white focus:border-secondary focus:ring-1 focus:ring-secondary outline-none appearance-none cursor-pointer" required>
                                 <option value="">Selezionare...</option>
-                                {FUELS.map(f => <option key={f} value={f}>{f}</option>)}
+                                {fuels.map(f => <option key={f} value={f}>{f}</option>)}
                             </select>
                         </div>
                         <div>
                             <label className="block text-sm font-semibold text-gray-700 mb-2">Cambio *</label>
                             <select name="transmission" value={formData.transmission} onChange={handleChange} className="w-full h-12 px-4 rounded-lg bg-gray-50 border border-gray-200 text-gray-900 focus:bg-white focus:border-secondary focus:ring-1 focus:ring-secondary outline-none appearance-none cursor-pointer" required>
                                 <option value="">Selezionare...</option>
-                                {TRANSMISSIONS.map(t => <option key={t} value={t}>{t}</option>)}
+                                {transmissions.map(t => <option key={t} value={t}>{t}</option>)}
                             </select>
                         </div>
                         <div className="md:col-span-2 lg:col-span-2">
                             <label className="block text-sm font-semibold text-gray-700 mb-2">Consegna *</label>
                             <select name="delivery_time" value={formData.delivery_time} onChange={handleChange} className="w-full h-12 px-4 rounded-lg bg-gray-50 border border-gray-200 text-gray-900 focus:bg-white focus:border-secondary focus:ring-1 focus:ring-secondary outline-none appearance-none cursor-pointer" required>
                                 <option value="">Selezionare...</option>
-                                {DELIVERY_TIMES.map(t => <option key={t} value={t}>{t}</option>)}
+                                {deliveryTimes.map(t => <option key={t} value={t}>{t}</option>)}
                             </select>
                         </div>
                     </div>
@@ -388,7 +464,7 @@ export default function VehicleForm({ initialData }: VehicleFormProps) {
                             <div className="p-2 bg-orange-100 text-orange-600 rounded-lg">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
                             </div>
-                            <h3 className="font-bold text-xl" style={{ color: '#c2410c' }}>Noleggio Breve Termine</h3>
+                            <h3 className="font-bold text-xl" style={{ color: '#c2410c' }}>Noleggio Luxury</h3>
                         </div>
 
                         <div className="flex items-center gap-3">
@@ -460,6 +536,69 @@ export default function VehicleForm({ initialData }: VehicleFormProps) {
                         </div>
                     )}
                 </div>
+
+                {/* SECTION 5: GALLERIA IMMAGINI (Noleggio Luxury Only) */}
+                {formData.is_short_term && (
+                    <div className="w-full">
+                        <div className="flex items-center gap-3 mb-6 border-b pb-4" style={{ borderBottomColor: 'rgba(234, 179, 8, 0.15)' }}>
+                            <div className="p-2 bg-yellow-50 text-yellow-600 rounded-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><circle cx="8.5" cy="8.5" r="1.5" /><polyline points="21 15 16 10 5 21" /></svg>
+                            </div>
+                            <h3 className="font-bold text-xl" style={{ color: '#ca8a04' }}>Galleria Immagini (Max 10)</h3>
+                        </div>
+
+                        <div className="bg-white p-6 rounded-xl border border-gray-100">
+                            <div className="mb-6">
+                                <label className="block text-sm font-semibold text-gray-700 mb-2">Carica Immagini</label>
+                                <div className="relative border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:bg-gray-50 transition-colors cursor-pointer group">
+                                    <input
+                                        type="file"
+                                        multiple
+                                        accept="image/*"
+                                        onChange={handleGalleryUpload}
+                                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                        disabled={formData.gallery.length >= 10 || uploading}
+                                    />
+                                    {uploading ? (
+                                        <div className="flex flex-col items-center">
+                                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mb-2"></div>
+                                            <p className="text-secondary font-medium">Caricamento in corso...</p>
+                                        </div>
+                                    ) : (
+                                        <div className="flex flex-col items-center gap-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400 group-hover:text-primary transition-colors"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="17 8 12 3 7 8" /><line x1="12" y1="3" x2="12" y2="15" /></svg>
+                                            <p className="text-gray-500 font-medium group-hover:text-primary transition-colors">
+                                                Clicca o trascina qui le immagini
+                                            </p>
+                                            <p className="text-xs text-gray-400">
+                                                {formData.gallery.length}/10 immagini caricate
+                                            </p>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* GALLERY PREVIEW GRID */}
+                            {formData.gallery.length > 0 && (
+                                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                                    {formData.gallery.map((url: string, index: number) => (
+                                        <div key={index} className="relative group aspect-square rounded-lg overflow-hidden border border-gray-200">
+                                            <img src={url} alt={`Gallery ${index}`} className="w-full h-full object-cover" />
+                                            <button
+                                                type="button"
+                                                onClick={() => removeGalleryImage(index)}
+                                                className="absolute top-2 right-2 bg-red-500 text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-all shadow-md hover:bg-red-600"
+                                                title="Rimuovi immagine"
+                                            >
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                )}
 
             </div>
 

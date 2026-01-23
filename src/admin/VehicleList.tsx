@@ -21,6 +21,7 @@ interface VehicleListProps {
 export default function VehicleList({ initialVehicles }: VehicleListProps) {
     const [vehicles, setVehicles] = useState<Vehicle[]>(initialVehicles);
     const [searchTerm, setSearchTerm] = useState('');
+    const [filterType, setFilterType] = useState<'all' | 'luxury' | 'long_term'>('all');
     const [deletingId, setDeletingId] = useState<string | null>(null);
 
     const handleDelete = async (id: string) => {
@@ -46,34 +47,53 @@ export default function VehicleList({ initialVehicles }: VehicleListProps) {
         }
     };
 
-    const filteredVehicles = vehicles.filter(vehicle =>
-        vehicle.titolo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        vehicle.marca.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        vehicle.modello.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (vehicle.targa && vehicle.targa.toLowerCase().includes(searchTerm.toLowerCase()))
-    );
+    const filteredVehicles = vehicles.filter(vehicle => {
+        // Filter by Type
+        if (filterType === 'luxury' && !vehicle.noleggio_breve) return false;
+        if (filterType === 'long_term' && vehicle.noleggio_breve) return false;
+
+        // Filter by Search
+        return (
+            vehicle.titolo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            vehicle.marca.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            vehicle.modello.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            (vehicle.targa && vehicle.targa.toLowerCase().includes(searchTerm.toLowerCase()))
+        );
+    });
 
     return (
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
             {/* TOOLBAR */}
             <div className="p-6 border-b border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4">
-                <div className="relative w-full md:w-96">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <svg className="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
-                        </svg>
+                <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto flex-1">
+                    <div className="relative w-full md:w-96">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg className="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
+                            </svg>
+                        </div>
+                        <input
+                            type="text"
+                            placeholder="Cerca veicolo per marca, modello o titolo..."
+                            className="pl-10 pr-4 py-2 w-full border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
                     </div>
-                    <input
-                        type="text"
-                        placeholder="Cerca veicolo per marca, modello o titolo..."
-                        className="pl-10 pr-4 py-2 w-full border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
+
+                    <select
+                        value={filterType}
+                        onChange={(e) => setFilterType(e.target.value as any)}
+                        className="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm bg-white cursor-pointer w-full md:w-auto"
+                    >
+                        <option value="all">Tutti i Veicoli</option>
+                        <option value="luxury">Luxury / Breve Termine</option>
+                        <option value="long_term">Noleggio Lungo Termine</option>
+                    </select>
                 </div>
 
-                <div className="text-sm text-gray-500">
-                    Totale Veicoli: <span className="font-bold text-gray-900">{vehicles.length}</span>
+                <div className="text-sm text-gray-500 whitespace-nowrap">
+                    Totale Veicoli: <span className="font-bold text-gray-900">{filteredVehicles.length}</span>
                 </div>
             </div>
 

@@ -13,6 +13,7 @@ interface Vehicle {
     available: boolean;
     category?: string;
     slug?: string;
+    priceLabel?: string;
 }
 
 interface CatalogProps {
