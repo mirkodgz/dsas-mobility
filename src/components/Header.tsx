@@ -39,7 +39,7 @@ export default function Header() {
 
                 {/* CTAs */}
                 <div className="hidden md:flex items-center space-x-6">
-                    <Button variant="primary" size="md" className="!rounded-full px-8 py-3 shadow-md hover:shadow-lg transition-all" onClick={() => window.location.href = '/contatti'}>
+                    <Button variant="primary" size="md" className="rounded-full! px-8 py-3 shadow-md hover:shadow-lg transition-all" onClick={() => window.location.href = '/contatti'}>
                         RICHIEDI PREVENTIVO
                     </Button>
                 </div>

@@ -41,7 +41,7 @@ const relatedVehicles = relatedData
     : [];
 
 // Formatting helpers
-const formatCurrency = (val) => {
+const formatCurrency = (val: number) => {
     return new Intl.NumberFormat("it-IT", {
         style: "currency",
         currency: "EUR",
@@ -84,7 +84,7 @@ const SPECS = [
                         {/* LEFT COLUMN: Main Image & Specs */}
                         <div class="flex flex-col gap-8">
                             {/* Main Image Container */}
-                            <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-[30px] p-8 lg:p-16 shadow-inner flex items-center justify-center relative overflow-hidden">
+                            <div class="bg-linear-to-br from-gray-50 to-gray-100 rounded-[30px] p-8 lg:p-16 shadow-inner flex items-center justify-center relative overflow-hidden">
                                 <img
                                     src={
                                         vehicle.immagine_url ||
@@ -233,7 +233,7 @@ const SPECS = [
                             />
 
                             {/* SPECS LIST */}
-                            <div class="bg-white rounded-[20px] p-6 shadow-soft border border-gray-100">
+                            <div class="bg-white rounded-card p-6 shadow-soft border border-gray-100">
                                 <h4 class="font-bold text-gray-800 mb-4 pb-2 border-b border-gray-50">
                                     Caratteristiche del{" "}
                                     <span class="text-primary">Veicolo</span>
@@ -328,7 +328,7 @@ const SPECS = [
                             </div>
 
                             {/* INCLUDED SERVICES */}
-                            <div class="bg-white rounded-[20px] p-6 shadow-soft border border-gray-100">
+                            <div class="bg-white rounded-card p-6 shadow-soft border border-gray-100">
                                 <h4 class="font-bold text-gray-800 mb-4 pb-2 border-b border-gray-50">
                                     Servizi inclusi nel{" "}
                                     <span class="text-primary">Canone</span>
@@ -336,7 +336,7 @@ const SPECS = [
                                 <ul class="space-y-3">
                                     {INCLUDED_SERVICES.map((service) => (
                                         <li class="flex items-start gap-3 group">
-                                            <div class="mt-0.5 w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
+                                            <div class="mt-0.5 w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     width="12"
@@ -365,7 +365,7 @@ const SPECS = [
                             {/* VEHICLE CARD (HERO) */}
                             <div class="bg-white rounded-[30px] p-6 md:p-10 shadow-soft border border-gray-100 mb-12 relative overflow-hidden group">
                                 {/* Image */}
-                                <div class="relative w-full aspect-[16/10] md:aspect-[2/1] mb-8 flex items-center justify-center">
+                                <div class="relative w-full aspect-16/10 md:aspect-2/1 mb-8 flex items-center justify-center">
                                     <img
                                         src={
                                             vehicle.immagine_url ||
@@ -457,16 +457,16 @@ const SPECS = [
                                     {relatedVehicles.map((related) => (
                                         <a
                                             href={`/veicoli/${related.slug}`}
-                                            class="bg-white rounded-[20px] p-6 border border-gray-100 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col md:flex-row items-center gap-6 group"
+                                            class="bg-white rounded-card p-6 border border-gray-100 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col md:flex-row items-center gap-6 group"
                                         >
-                                            <div class="w-full md:w-1/3 aspect-[4/3] overflow-hidden rounded-xl bg-gray-50 flex items-center justify-center">
+                                            <div class="w-full md:w-1/3 aspect-4/3 overflow-hidden rounded-xl bg-gray-50 flex items-center justify-center">
                                                 <img
                                                     src={related.immagine_url}
                                                     alt={related.titolo}
                                                     class="w-full h-full object-contain mix-blend-multiply p-2 group-hover:scale-110 transition-transform duration-500"
                                                 />
                                             </div>
-                                            <div class="flex-grow w-full md:w-auto text-center md:text-left">
+                                            <div class="grow w-full md:w-auto text-center md:text-left">
                                                 <div class="flex md:flex-col gap-2 mb-2 items-center md:items-start justify-center">
                                                     <h4 class="font-heading font-bold text-xl text-primary">
                                                         <span class="text-secondary">

@@ -81,8 +81,8 @@ export default function ValuationModal() {
     if (!isModalOpen) return null;
 
     return createPortal(
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-primary/60 backdrop-blur-sm transition-all animate-fadeIn">
-            <div className="bg-white rounded-[20px] shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto animate-scaleIn relative">
+        <div className="fixed inset-0 z-9999 flex items-center justify-center p-4 bg-primary/60 backdrop-blur-sm transition-all animate-fadeIn">
+            <div className="bg-white rounded-card shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto animate-scaleIn relative">
 
                 <div className="p-6 md:p-8 bg-white relative">
                     <button
@@ -165,7 +165,7 @@ export default function ValuationModal() {
                             <Button
                                 type="submit"
                                 disabled={submitting}
-                                className="w-full rounded-pill py-3.5 text-sm font-bold !bg-secondary !text-white hover:opacity-90 hover:scale-[1.01] shadow-lg shadow-secondary/20 transition-all uppercase tracking-wide disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="w-full rounded-pill py-3.5 text-sm font-bold bg-secondary! text-white! hover:opacity-90 hover:scale-[1.01] shadow-lg shadow-secondary/20 transition-all uppercase tracking-wide disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {submitting ? 'INVIO IN CORSO...' : 'RICHIEDI VALUTAZIONE'}
                             </Button>

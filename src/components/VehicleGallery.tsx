@@ -77,13 +77,13 @@ export default function VehicleGallery({ images }: VehicleGalleryProps) {
             {/* LIGHTBOX OVERLAY */}
             {isOpen && (
                 <div
-                    className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200"
+                    className="fixed inset-0 z-9999 bg-black/95 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200"
                     onClick={closeLightbox}
                 >
                     {/* Close Button */}
                     <button
                         onClick={closeLightbox}
-                        className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors p-2 z-[100]"
+                        className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors p-2 z-100"
                         aria-label="Chiudi"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -95,7 +95,7 @@ export default function VehicleGallery({ images }: VehicleGalleryProps) {
                     {/* Navigation Buttons (Desktop) */}
                     <button
                         onClick={goToPrevious}
-                        className="absolute left-6 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors p-4 rounded-full hover:bg-white/10 hidden md:block z-[100]"
+                        className="absolute left-6 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors p-4 rounded-full hover:bg-white/10 hidden md:block z-100"
                         aria-label="Precedente"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -105,7 +105,7 @@ export default function VehicleGallery({ images }: VehicleGalleryProps) {
 
                     <button
                         onClick={goToNext}
-                        className="absolute right-6 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors p-4 rounded-full hover:bg-white/10 hidden md:block z-[100]"
+                        className="absolute right-6 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition-colors p-4 rounded-full hover:bg-white/10 hidden md:block z-100"
                         aria-label="Successiva"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

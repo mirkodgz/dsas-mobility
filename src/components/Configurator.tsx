@@ -107,8 +107,8 @@ export default function Configurator({
 
     return (
         <>
-            <div className="bg-white rounded-[20px] p-6 shadow-soft border border-gray-100">
-                <h3 className="text-secondary font-extrabold tracking-widest uppercase text-lg mb-2 block !text-primary !mb-4">COSTRUISCI LA TUA OFFERTA</h3>
+            <div className="bg-white rounded-card p-6 shadow-soft border border-gray-100">
+                <h3 className="text-primary font-extrabold tracking-widest uppercase text-lg mb-4 block">COSTRUISCI LA TUA OFFERTA</h3>
                 <p className="text-gray-500 text-sm mb-6">Richiedi il tuo preventivo personalizzato</p>
 
                 {/* Months Selector */}
@@ -175,7 +175,7 @@ export default function Configurator({
                     <h4 className="text-primary font-bold text-lg mb-1">RICHIEDI IL TUO PREVENTIVO</h4>
                     <p className="text-gray-400 text-xs mb-4">Un consulente ti contatterà entro 24 ore</p>
                     <Button
-                        className="w-full rounded-full py-4 text-base font-bold !bg-secondary !text-white hover:opacity-90 transition-opacity"
+                        className="w-full rounded-full py-4 text-base font-bold bg-secondary! text-white! hover:opacity-90 transition-opacity"
                         onClick={() => setIsModalOpen(true)}
                     >
                         RICHIEDI ORA
@@ -185,8 +185,8 @@ export default function Configurator({
 
             {/* MODAL */}
             {isModalOpen && typeof document !== 'undefined' && createPortal(
-                <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-primary/60 backdrop-blur-sm transition-all animate-fadeIn">
-                    <div className="bg-white rounded-[20px] shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto animate-scaleIn relative">
+                <div className="fixed inset-0 z-9999 flex items-center justify-center p-4 bg-primary/60 backdrop-blur-sm transition-all animate-fadeIn">
+                    <div className="bg-white rounded-card shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto animate-scaleIn relative">
 
                         {/* Unified Modal Content */}
                         <div className="p-6 md:p-8 bg-white relative">
@@ -201,7 +201,7 @@ export default function Configurator({
                                 <h2 className="font-heading font-extrabold text-2xl text-primary mb-1 uppercase leading-tight pr-8">{vehicleTitle}</h2>
                                 <p className="text-gray-500 mb-4 text-sm">{vehicleVersion}</p>
 
-                                <div className="flex items-center gap-6 bg-gray-50 rounded-lg p-3 inline-flex">
+                                <div className="inline-flex items-center gap-6 bg-gray-50 rounded-lg p-3">
                                     <div className="flex flex-col">
                                         <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Durata</span>
                                         <span className="text-lg font-bold text-primary leading-none">{selectedMonths} <span className="text-xs font-normal text-gray-400">Mesi</span></span>
@@ -335,7 +335,7 @@ export default function Configurator({
                                     <Button
                                         type="submit"
                                         disabled={submitting}
-                                        className="w-full rounded-pill py-3.5 text-sm font-bold !bg-secondary !text-white hover:opacity-90 hover:scale-[1.01] shadow-lg shadow-secondary/20 transition-all uppercase tracking-wide disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="w-full rounded-pill py-3.5 text-sm font-bold bg-secondary! text-white! hover:opacity-90 hover:scale-[1.01] shadow-lg shadow-secondary/20 transition-all uppercase tracking-wide disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         {submitting ? 'INVIO IN CORSO...' : 'INVIA RICHIESTA'}
                                     </Button>

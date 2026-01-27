@@ -80,7 +80,7 @@ export default function LuxuryLeadForm({
     return (
         <>
             <Button
-                className="w-full h-14 rounded-xl text-lg font-bold shadow-xl shadow-primary/20 hover:scale-[1.02] transition-transform !bg-secondary !text-white"
+                className="w-full h-14 rounded-xl text-lg font-bold shadow-xl shadow-primary/20 hover:scale-[1.02] transition-transform bg-secondary! text-white!"
                 onClick={() => setIsModalOpen(true)}
             >
                 RICHIEDI ORA
@@ -88,8 +88,8 @@ export default function LuxuryLeadForm({
 
             {/* MODAL */}
             {isModalOpen && typeof document !== 'undefined' && createPortal(
-                <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-primary/60 backdrop-blur-sm transition-all animate-fadeIn">
-                    <div className="bg-white rounded-[20px] shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto animate-scaleIn relative">
+                <div className="fixed inset-0 z-9999 flex items-center justify-center p-4 bg-primary/60 backdrop-blur-sm transition-all animate-fadeIn">
+                    <div className="bg-white rounded-card shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto animate-scaleIn relative">
 
                         <div className="p-6 md:p-8 bg-white relative">
                             {/* Close Button */}
@@ -235,7 +235,7 @@ export default function LuxuryLeadForm({
                                     <Button
                                         type="submit"
                                         disabled={submitting}
-                                        className="w-full rounded-pill py-3.5 text-sm font-bold !bg-secondary !text-white hover:opacity-90 hover:scale-[1.01] shadow-lg shadow-secondary/20 transition-all uppercase tracking-wide disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="w-full rounded-pill py-3.5 text-sm font-bold bg-secondary! text-white! hover:opacity-90 hover:scale-[1.01] shadow-lg shadow-secondary/20 transition-all uppercase tracking-wide disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         {submitting ? 'INVIO IN CORSO...' : 'INVIA RICHIESTA'}
                                     </Button>

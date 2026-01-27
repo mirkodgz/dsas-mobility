@@ -27,18 +27,18 @@ export default function VehicleCard({ vehicle }: { vehicle: VehicleProps }) {
             </div>
 
             {/* IMAGE AREA */}
-            <div className="relative aspect-[16/10] overflow-hidden bg-gray-200 border-b border-gray-100">
+            <div className="relative aspect-16/10 overflow-hidden bg-gray-200 border-b border-gray-100">
                 <img
                     src={vehicle.image}
                     alt={`${vehicle.brand} ${vehicle.model}`}
                     className="w-full h-full object-contain p-6 object-center group-hover:scale-105 transition-transform duration-500 mix-blend-multiply"
                     loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="absolute inset-0 bg-linear-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </div>
 
             {/* CONTENT */}
-            <div className="p-6 flex flex-col flex-grow relative">
+            <div className="p-6 flex flex-col grow relative">
                 {/* BRAND & MODEL */}
                 <div className="mb-4">
                     <h3 className="text-secondary font-bold text-sm tracking-wide uppercase mb-1">{vehicle.brand}</h3>
