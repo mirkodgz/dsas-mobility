@@ -1,0 +1,11 @@
+=== ANALYZING FUEL TYPES (ALIMENTAZIONE) ===
+
+✅ VALID TYPES: Benzina, Diesel, Elettrica, Ibrida-Benzina, Ibrida-Diesel
+
+📊 CURRENT DISTRIBUTION (LONG TERM):
+{
+  "Benzina": 24,
+  "Ibrida-Benzina": 17,
+  "Diesel": 24,
+  "Elettrica": 8
+}

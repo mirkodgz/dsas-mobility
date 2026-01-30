@@ -18,7 +18,7 @@ interface VehicleProps {
 
 export default function VehicleCard({ vehicle }: { vehicle: VehicleProps }) {
     const CardContent = (
-        <div className="group relative bg-white rounded-card shadow-soft hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col h-full transform hover:-translate-y-1">
+        <div className="group relative bg-white rounded-card shadow-lg md:shadow-soft hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col h-full transform hover:-translate-y-1">
             {/* BADGE */}
             <div className="absolute top-4 left-4 z-10">
                 <Badge variant={vehicle.available ? 'success' : 'info'}>

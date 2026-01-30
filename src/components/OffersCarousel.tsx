@@ -74,7 +74,7 @@ export default function OffersCarousel({ vehicles }: { vehicles: Vehicle[] }) {
             </button>
 
             {/* VIEWPORT */}
-            <div className="overflow-hidden md:p-4 -mx-4 md:mx-0 px-4 md:px-0">
+            <div className="overflow-hidden py-8 md:p-4 -mx-4 md:mx-0 px-4 md:px-0">
                 <div
                     className="flex transition-transform duration-700 ease-in-out"
                     style={{ transform: `translateX(-${currentIndex * (100 / itemsPerPage)}%)` }}
@@ -85,7 +85,7 @@ export default function OffersCarousel({ vehicles }: { vehicles: Vehicle[] }) {
                             style={{ flex: `0 0 ${100 / itemsPerPage}%` }}
                             className="h-full px-4"
                         >
-                            <VehicleCard vehicle={vehicle} />
+                            <VehicleCard vehicle={{ ...vehicle, available: vehicle.available ?? false }} />
                         </div>
                     ))}
                 </div>

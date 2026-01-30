@@ -1,0 +1,27 @@
+{
+  "valid_categories": [
+    "Berlina",
+    "City Car",
+    "Station Wagon",
+    "SUV / Crossover",
+    "Veicoli commerciali",
+    "Pick-up",
+    "Elettrica",
+    "ROADSTER DEPORTIVO DE LUJO"
+  ],
+  "veicoli_usage": {
+    "Utilitaria": 2,
+    "City Car": 10,
+    "Station Wagon": 10,
+    "Pick-up": 8,
+    "SUV / Crossover": 32,
+    "Elettrica": 1,
+    "Veicolo Commerciale": 6,
+    "Berlina": 7,
+    "ROADSTER DEPORTIVO DE LUJO": 1
+  },
+  "discrepancies": [
+    "Utilitaria",
+    "Veicolo Commerciale"
+  ]
+}

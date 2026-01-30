@@ -59,7 +59,8 @@ export default function Catalog({ initialVehicles, brands, categories }: Catalog
     return (
         <div className="flex flex-col lg:flex-row gap-8 items-start">
             {/* SIDEBAR (Left) */}
-            <div className="w-full lg:w-1/4 sticky top-24">
+            {/* SIDEBAR (Left) */}
+            <div className="w-full lg:w-1/4 relative z-50 lg:sticky lg:top-24">
                 <FiltersSidebar
                     filters={filters}
                     setFilters={setFilters}
@@ -69,7 +70,7 @@ export default function Catalog({ initialVehicles, brands, categories }: Catalog
             </div>
 
             {/* VEHICLE GRID (Right) */}
-            <div className="w-full lg:w-3/4">
+            <div className="w-full lg:w-3/4 relative z-0">
                 <div className="flex justify-between items-center mb-6">
                     <p className="text-gray-500 text-sm font-semibold uppercase tracking-wider">
                         Trovati <span className="text-primary font-bold">{filteredVehicles.length}</span> veicoli
